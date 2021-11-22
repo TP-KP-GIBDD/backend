@@ -1,16 +1,17 @@
-﻿using System;
+﻿using RegistrationAppointService.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace RegistrationAppointService.Repositories.Interfaces
 {
-    interface IRepository<TDbModel, T>
+    public interface IRepository<TDbModel, T>
     {
-        public List<TDbModel> GetAll();
+        public IEnumerable<TDbModel> GetAll();
         public TDbModel Get(T id);
-        public TDbModel Create(TDbModel model);
-        public TDbModel Update(TDbModel model);
-        public bool Delete(T id);
+        public void Create(TDbModel model);
+        public void Update(TDbModel model);
+        public TDbModel Delete(T id);
     }
 }

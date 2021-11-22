@@ -9,7 +9,7 @@ namespace RegistrationAppointService.Models
     {
         public int Id { get; set; }
 
-        public int Name { get; set; }
+        public string Name { get; set; }
 
         public List<GibddOffice> GibddOffices { get; set; }
     }

@@ -24,12 +24,21 @@ namespace RegistrationAppointService.Models
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Region>().HasData(
+                new Region[]
+                {
+                    new Region{Id = 1, Name="Владимирская область"},
+                    new Region{Id = 2, Name="Московская область"},
+                    new Region{Id = 3, Name="Ивановская область"}
+                }
+            );
+
             builder.Entity<Document>().HasData(
                 new Document[]
                 {
                     new Document{Id = 1, Name = "Test"}
                 }
-                );
+            );
         }
     }
 }
