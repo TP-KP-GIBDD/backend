@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using RegistrationAppointService.Models;
 using RegistrationAppointService.Repositories.Interfaces;
 using RegistrationAppointService.Repositories.Implimentation;
+using RegistrationAppointService.Services.Interfaces;
+using RegistrationAppointService.Services;
 
 namespace RegistrationAppointService
 {
@@ -41,6 +43,8 @@ namespace RegistrationAppointService
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IRepository<Region, int>, RegionRepository>();
+            services.AddTransient<IRepository<GibddOffice, int>, GibddOfficeRepository>();
+            services.AddTransient<IRegionOfficeService<int>, RegionOfficeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

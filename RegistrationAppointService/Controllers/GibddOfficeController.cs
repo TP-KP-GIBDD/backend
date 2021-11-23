@@ -1,29 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RegistrationAppointService.Models;
-using RegistrationAppointService.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RegistrationAppointService.Repositories.Interfaces;
+using RegistrationAppointService.Models;
 
 namespace RegistrationAppointService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RegionController : ControllerBase
+    public class GibddOfficeController : ControllerBase
     {
-        IRepository<Region, int> _repository;
+        IRepository<GibddOffice, int> repository;
 
-        public RegionController(IRepository<Region, int> repository)
+        public GibddOfficeController(IRepository<GibddOffice, int> repository)
         {
-            _repository = repository;
+            this.repository = repository;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Region region = _repository.Get(id);
+            GibddOffice region = repository.Get(id);
 
             if (region == null)
             {
@@ -36,51 +36,51 @@ namespace RegistrationAppointService.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_repository.GetAll());
+            return Ok(repository.GetAll());
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] Region model)
+        public IActionResult Create([FromBody] GibddOffice model)
         {
             if (model == null)
             {
                 return BadRequest();
             }
 
-            _repository.Create(model);
+            repository.Create(model);
             return Ok(model);
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Region model)
+        public IActionResult Update(int id, [FromBody] GibddOffice model)
         {
             if (model == null || model.Id != id)
             {
                 return BadRequest();
             }
 
-            Region region = _repository.Get(id);
+            GibddOffice region = repository.Get(id);
 
             if (region == null)
             {
                 return NotFound();
             }
 
-            _repository.Update(model);
+            repository.Update(model);
             return Ok(region);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            Region region = _repository.Delete(id);
+            GibddOffice office = repository.Delete(id);
 
-            if (region == null)
+            if (office == null)
             {
                 return BadRequest();
             }
 
-            return Ok(region);
+            return Ok(office);
         }
     }
 }

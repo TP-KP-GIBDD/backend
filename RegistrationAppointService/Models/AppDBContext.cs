@@ -33,6 +33,14 @@ namespace RegistrationAppointService.Models
                 }
             );
 
+            builder.Entity<GibddOffice>().HasData(
+                new GibddOffice[]
+                {
+                    new GibddOffice{Id = 1, Name = "Управление ГИБДД УМВД России по Владимирской обл.", RegionId = 1, Lat=56.434, Lon=54.432},
+                    new GibddOffice{Id = 2, Name = "Отдел ГИБДД по Суздальскому району", RegionId = 1, Lat=57.434, Lon=55.432}
+                }
+            );
+
             builder.Entity<Document>().HasData(
                 new Document[]
                 {
