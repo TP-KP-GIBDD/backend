@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RegistrationAppointService.Repositories.Interfaces;
 using RegistrationAppointService.Models;
+using RegistrationAppointService.Services.Interfaces;
 
 namespace RegistrationAppointService.Controllers
 {
@@ -14,10 +15,23 @@ namespace RegistrationAppointService.Controllers
     public class GibddOfficeController : ControllerBase
     {
         IRepository<GibddOffice, int> repository;
+        IRegionOfficeService<int> service;
 
-        public GibddOfficeController(IRepository<GibddOffice, int> repository)
+        public GibddOfficeController(IRepository<GibddOffice, int> repository, IRegionOfficeService<int> service)
         {
             this.repository = repository;
+            this.service = service;
+        }
+
+        [HttpGet("GetOfficesByRegionId/{id}")]
+        public IActionResult GetOfficesByRegionId(int id)
+        {
+            if (repository.Get(id) == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(service.GetOfficesByRegionId(id));
         }
 
         [HttpGet("{id}")]

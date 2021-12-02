@@ -22,14 +22,15 @@ namespace RegistrationAppointService.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
             base.OnModelCreating(builder);
 
             builder.Entity<Region>().HasData(
                 new Region[]
                 {
-                    new Region{Id = 1, Name="Владимирская область"},
-                    new Region{Id = 2, Name="Московская область"},
-                    new Region{Id = 3, Name="Ивановская область"}
+                    new Region{Id = 1, Name="Владимирская область", lat=56.129057, lon=40.406635},
+                    new Region{Id = 2, Name="Московская область", lat=55.75322, lon=37.622513},
+                    new Region{Id = 3, Name="Ивановская область", lat=57.000353, lon=40.97393}
                 }
             );
 
@@ -44,8 +45,20 @@ namespace RegistrationAppointService.Models
             builder.Entity<Document>().HasData(
                 new Document[]
                 {
-                    new Document{Id = 1, Name = "Test"}
+                    new Document{Id = 1, Name = "Паспорт гражданина РФ"},
+                    new Document{Id = 2, Name = "Водительское удостоверение"},
+                    new Document{Id = 3, Name = "Документ о сдаче экзамена ПДД"},
+                    new Document{Id = 4, Name = "Договор купли-продажи транспортного средства"},
+                    new Document{Id = 5, Name = "Страховой полис"},
+                    new Document{Id = 6, Name = "Технический паспорт транспортного средства"},
+                    new Document{Id = 7, Name = "Документ собственника транспортного средства"},
                 }
+            );
+
+            builder.Entity<Service>().HasData(
+                new Service { Id = 1, Name = "Постановка автомобиля на учёт" },
+                new Service { Id = 2, Name = "Получение водительского удостоверения" },
+                new Service { Id = 3, Name = "Замена водительского удостоверения" }
             );
         }
     }

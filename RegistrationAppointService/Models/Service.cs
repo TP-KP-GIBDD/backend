@@ -12,7 +12,6 @@ namespace RegistrationAppointService.Models
 
         public string Name { get; set; }
 
-        public string TypeOfService { get; set; }
 
         public List<Document> Documents { get; set; }
     }

@@ -17,6 +17,7 @@ using RegistrationAppointService.Repositories.Interfaces;
 using RegistrationAppointService.Repositories.Implimentation;
 using RegistrationAppointService.Services.Interfaces;
 using RegistrationAppointService.Services;
+using RegistrationAppointService.Services.Implimentation;
 
 namespace RegistrationAppointService
 {
@@ -34,6 +35,11 @@ namespace RegistrationAppointService
         {
            
             services.AddControllers();
+
+            services.AddCors(options => options.AddDefaultPolicy(
+                    builder => builder.AllowAnyOrigin()
+                ));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RegistrationAppointService", Version = "v1" });
@@ -44,7 +50,9 @@ namespace RegistrationAppointService
 
             services.AddTransient<IRepository<Region, int>, RegionRepository>();
             services.AddTransient<IRepository<GibddOffice, int>, GibddOfficeRepository>();
+            services.AddTransient<IRepository<Service, int>, ServiceRepository>();
             services.AddTransient<IRegionOfficeService<int>, RegionOfficeService>();
+            services.AddTransient<IDateTimeService, DateTimeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +68,12 @@ namespace RegistrationAppointService
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 

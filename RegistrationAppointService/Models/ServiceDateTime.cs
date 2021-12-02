@@ -15,6 +15,5 @@ namespace RegistrationAppointService.Models
 
         public bool IsFree { get; set; }
 
-        public RegistrationService? RegistrationService { get; set; }
     }
 }

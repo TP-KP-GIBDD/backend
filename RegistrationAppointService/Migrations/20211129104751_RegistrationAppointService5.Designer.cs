@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegistrationAppointService.Models;
 
 namespace RegistrationAppointService.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211129104751_RegistrationAppointService5")]
+    partial class RegistrationAppointService5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,37 +54,7 @@ namespace RegistrationAppointService.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Паспорт гражданина РФ"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Водительское удостоверение"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Документ о сдаче экзамена ПДД"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Договор купли-продажи транспортного средства"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Страховой полис"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Технический паспорт транспортного средства"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Документ собственника транспортного средства"
+                            Name = "Test"
                         });
                 });
 
@@ -217,26 +189,12 @@ namespace RegistrationAppointService.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TypeOfService")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Services");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Постановка автомобиля на учёт"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Получение водительского удостоверения"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Замена водительского удостоверения"
-                        });
                 });
 
             modelBuilder.Entity("RegistrationAppointService.Models.ServiceDateTime", b =>

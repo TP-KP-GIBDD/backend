@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj": {}
+    "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj": {
+    "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
+        "projectUniqueName": "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
         "projectName": "RegistrationAppointService",
-        "projectPath": "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
+        "projectPath": "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
         "packagesPath": "C:\\Users\\qqq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\obj\\",
+        "outputPath": "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

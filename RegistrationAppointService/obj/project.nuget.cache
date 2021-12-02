@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fnKBZ1Mb/QgAVY3JN0c7QU3ZI/iWHnoTXCRUIBEFQvth0UDI0/MPxWR4SoCWxEK1wcOw7/B6vVICEgZCAYgrdw==",
+  "dgSpecHash": "AgGCrX309rZcg9Cic2/oxikoOxlem1oWl7l7ZWtgWL5EiJjvtTP+NCJEGffPPYGgjcpWjCTg/alHzmDyQePQqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\qqq\\Desktop\\gibdd-app\\gibdd-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
+  "projectFilePath": "C:\\Users\\qqq\\Desktop\\gibdd-app-backend\\GIBDD-web-api\\RegistrationAppointService\\RegistrationAppointService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\qqq\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\qqq\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

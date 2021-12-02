@@ -11,6 +11,10 @@ namespace RegistrationAppointService.Models
 
         public string Name { get; set; }
 
+        public double lat { get; set; }
+
+        public double lon { get; set; }
+
         public List<GibddOffice> GibddOffices { get; set; }
     }
 }
