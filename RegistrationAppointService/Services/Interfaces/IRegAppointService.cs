@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RegistrationAppointService.Services.Interfaces
 {
-    public interface IDateTimeService
+    public interface IRegAppointService
     {
-        IEnumerable<ServiceDateTime> GetTimesByDate(string date);
-        void TakeTime(int serviceId);
+        bool SaveRegistrationService(RegServiceInfo regService);
     }
 }

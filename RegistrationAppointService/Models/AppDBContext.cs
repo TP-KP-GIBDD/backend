@@ -60,6 +60,32 @@ namespace RegistrationAppointService.Models
                 new Service { Id = 2, Name = "Получение водительского удостоверения" },
                 new Service { Id = 3, Name = "Замена водительского удостоверения" }
             );
+
+            builder.Entity<ServiceDateTime>().HasData(
+                new ServiceDateTime { Id = 1, Date = new DateTime(2021, 12, 7), Time="8:00", IsFree=true },
+                new ServiceDateTime { Id = 2, Date = new DateTime(2021, 12, 7), Time="8:15", IsFree = true },
+                new ServiceDateTime { Id = 3, Date = new DateTime(2021, 12, 7), Time = "8:30", IsFree = true },
+                new ServiceDateTime { Id = 4, Date = new DateTime(2021, 12, 7), Time = "8:45", IsFree = false },
+                new ServiceDateTime { Id = 5, Date = new DateTime(2021, 12, 7), Time = "9:00", IsFree = true },
+                new ServiceDateTime { Id = 6, Date = new DateTime(2021, 12, 7), Time = "9:15", IsFree = true },
+                new ServiceDateTime { Id = 7, Date = new DateTime(2021, 12, 7), Time = "9:30", IsFree = true },
+                new ServiceDateTime { Id = 8, Date = new DateTime(2021, 12, 7), Time = "9:45", IsFree = true },
+                new ServiceDateTime { Id = 9, Date = new DateTime(2021, 12, 7), Time = "10:00", IsFree = true },
+                new ServiceDateTime { Id = 10, Date = new DateTime(2021, 12, 7), Time = "10:15", IsFree = true },
+                new ServiceDateTime { Id = 11, Date = new DateTime(2021, 12, 7), Time = "10:30", IsFree = true },
+                new ServiceDateTime { Id = 12, Date = new DateTime(2021, 12, 7), Time = "10:45", IsFree = true },
+                new ServiceDateTime { Id = 13, Date = new DateTime(2021, 12, 7), Time = "11:00", IsFree = true },
+                new ServiceDateTime { Id = 14, Date = new DateTime(2021, 12, 7), Time = "11:15", IsFree = true },
+                new ServiceDateTime { Id = 15, Date = new DateTime(2021, 12, 7), Time = "11:30", IsFree = true },
+                new ServiceDateTime { Id = 16, Date = new DateTime(2021, 12, 7), Time = "11:45", IsFree = true },
+                new ServiceDateTime { Id = 17, Date = new DateTime(2021, 12, 7), Time = "12:00", IsFree = true },
+                new ServiceDateTime { Id = 18, Date = new DateTime(2021, 12, 7), Time = "13:00", IsFree = true },
+                new ServiceDateTime { Id = 19, Date = new DateTime(2021, 12, 7), Time = "13:15", IsFree = true },
+                new ServiceDateTime { Id = 20, Date = new DateTime(2021, 12, 7), Time = "13:30", IsFree = true },
+                new ServiceDateTime { Id = 21, Date = new DateTime(2021, 12, 7), Time = "13:45", IsFree = true },
+                new ServiceDateTime { Id = 22, Date = new DateTime(2021, 12, 7), Time = "14:00", IsFree = true },
+                new ServiceDateTime { Id = 23, Date = new DateTime(2021, 12, 7), Time = "14:15", IsFree = true }
+            );
         }
     }
 }

@@ -15,8 +15,11 @@ namespace RegistrationAppointService.Services.Implimentation
             this.context = context;
         }
 
-        public IEnumerable<ServiceDateTime> GetTimesByDate(DateTime date)
+        public IEnumerable<ServiceDateTime> GetTimesByDate(string _date)
         {
+
+            DateTime date = DateTime.Parse(_date);
+
             return context.ServiceDateTimes.Where(p => p.Date == date);
         }
 

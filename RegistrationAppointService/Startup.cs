@@ -53,6 +53,7 @@ namespace RegistrationAppointService
             services.AddTransient<IRepository<Service, int>, ServiceRepository>();
             services.AddTransient<IRegionOfficeService<int>, RegionOfficeService>();
             services.AddTransient<IDateTimeService, DateTimeService>();
+            services.AddTransient<IRegAppointService, RegAppointService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
