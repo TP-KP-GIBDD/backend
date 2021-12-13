@@ -9,13 +9,26 @@ namespace RegistrationAppointService.Services.Implimentation
 {
     public class RegAppointService : IRegAppointService
     {
-        IDateTimeService dateTimeService;
         AppDBContext context;
 
-        public RegAppointService(IDateTimeService dateTimeService, AppDBContext context)
+        public RegAppointService(AppDBContext context)
         {
-            this.dateTimeService = dateTimeService;
             this.context = context;
+        }
+
+        public IEnumerable<RegistrationService> GetAllRegAppoints()
+        {
+            return context.RegistrationServices;
+        }
+
+        public IEnumerable<RegistrationService> GetRegAppointsByCarOwnerId(int id)
+        {
+            return context.RegistrationServices.Where(rs => rs.CarOwnerId == id);
+        }
+
+        public RegistrationService GetRegAppointById(int id)
+        {
+            return context.RegistrationServices.Find(id);
         }
 
         public bool SaveRegistrationService(RegServiceInfo regService)
@@ -28,7 +41,6 @@ namespace RegistrationAppointService.Services.Implimentation
 
             currentDatetime.IsFree = false;
 
-            //dateTimeService.TakeTime(regService)
             RegistrationService service = new RegistrationService();
             service.Status = "Ожидает выполнение";
             service.ServiceDateTimeId = regService.DateTimeId;
@@ -41,9 +53,9 @@ namespace RegistrationAppointService.Services.Implimentation
             return true;
         }
 
-        public bool SetStatus(int RegistrationAppointId, string status)
+        public bool SetRegAppointStatus(int regAppointId, string status)
         {
-            RegistrationService service = context.RegistrationServices.Find(RegistrationAppointId);
+            RegistrationService service = context.RegistrationServices.Find(regAppointId);
 
             if (service != null)
             {

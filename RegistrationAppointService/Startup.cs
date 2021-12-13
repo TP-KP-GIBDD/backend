@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
@@ -18,6 +17,9 @@ using RegistrationAppointService.Repositories.Implimentation;
 using RegistrationAppointService.Services.Interfaces;
 using RegistrationAppointService.Services;
 using RegistrationAppointService.Services.Implimentation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace RegistrationAppointService
 {
@@ -33,7 +35,28 @@ namespace RegistrationAppointService
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            services
+               .AddAuthentication(options =>
+               {
+                   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                   options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+               })
+                .AddJwtBearer(cfg =>
+                {
+                    cfg.RequireHttpsMetadata = true;
+                    cfg.SaveToken = true;
+                    cfg.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("placeholder-key-that-is-long-enough-for-sha256")),
+                        ValidateAudience = false,
+                        ValidateIssuer = false,
+                        ValidateLifetime = false,
+                        RequireExpirationTime = false,
+                        ClockSkew = TimeSpan.Zero,
+                        ValidateIssuerSigningKey = true
+                    };
+                });
+
             services.AddControllers();
 
             services.AddCors(options => options.AddDefaultPolicy(

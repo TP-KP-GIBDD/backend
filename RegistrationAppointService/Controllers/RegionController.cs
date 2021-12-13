@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationAppointService.Models;
@@ -22,6 +23,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpGet("{id}")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult Get(int id)
         {
             Region region = _repository.Get(id);
@@ -35,12 +37,14 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpGet]
+        //[Authorize]
         public IActionResult Get()
         {
             return Ok(_repository.GetAll());
         }
 
         [HttpPost]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public IActionResult Create([FromBody] Region model)
         {
             if (model == null)
@@ -53,6 +57,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpPut("{id}")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public IActionResult Update(int id, [FromBody] Region model)
         {
             if (model == null || model.Id != id)
@@ -72,6 +77,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpDelete("{id}")]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme, Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             Region region = _repository.Delete(id);

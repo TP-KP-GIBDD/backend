@@ -9,5 +9,9 @@ namespace RegistrationAppointService.Services.Interfaces
     public interface IRegAppointService
     {
         bool SaveRegistrationService(RegServiceInfo regService);
+        IEnumerable<RegistrationService> GetAllRegAppoints();
+        RegistrationService GetRegAppointById(int id);
+        IEnumerable<RegistrationService> GetRegAppointsByCarOwnerId(int id);
+        bool SetRegAppointStatus(int regAppointId, string status);
     }
 }

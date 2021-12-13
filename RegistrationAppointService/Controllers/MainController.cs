@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RegistrationAppointService.Models;
@@ -21,21 +22,61 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpPost]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult createAppoint([FromBody] RegServiceInfo serviceInfo)
         {
           
-
             if (regService.SaveRegistrationService(serviceInfo))
             {
                 return Ok();
             }
-            
-            //if (regService.SaveRegistrationService(serviceInfo))
-            //{
-            //    return Ok();
-            //}
 
             return BadRequest();
+        }
+
+        [HttpGet("GetAllAppoints")]
+        public IActionResult GetAllAppoints()
+        {
+            return Ok(regService.GetAllRegAppoints());
+        }
+
+        [HttpGet("GetAppointsByCarOwnerId/{id}")]
+        public IActionResult GetAppointsByCarOwnerId(int id)
+        {
+            // Логика поиска carOwner из микросервиса автовладелец
+
+            return Ok(regService.GetRegAppointsByCarOwnerId(id));
+        }
+
+        [HttpGet("GetAppointById/{id}")]
+        public IActionResult GetAppointById(int id)
+        {
+            RegistrationService appoint = regService.GetRegAppointById(id);
+
+            if (appoint == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(appoint);
+        }
+
+        [HttpPost("SetStatus")]
+        public IActionResult SetStatus(int regAppointId, string status)
+        {
+            RegistrationService appoint = regService.GetRegAppointById(regAppointId);
+
+            if (appoint == null)
+            {
+                return BadRequest(new { errMessage = "Данная запись на услугу не найдена" });
+            }
+
+            if (!regService.SetRegAppointStatus(regAppointId, status))
+            {
+                return BadRequest(new { errMessage = "Произошла ошибка при установке статуса" });
+            }
+
+            return Ok(appoint);
         }
     }
 }
