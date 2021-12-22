@@ -127,6 +127,38 @@ namespace RegistrationAppointService.Migrations
                             Lon = 55.432000000000002,
                             Name = "Отдел ГИБДД по Суздальскому району",
                             RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Lat = 55.898285999999999,
+                            Lon = 37.516978999999999,
+                            Name = "Отделение регистрации МО ГИБДД ТНРЭР № 1 ГУ МВД России по г. Москве",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Lat = 55.773797999999999,
+                            Lon = 37.612226999999997,
+                            Name = "Управление ГИБДД ГУ МВД России по городу Москве",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Lat = 55.675286,
+                            Lon = 37.727238999999997,
+                            Name = "ОБ ДПС ГИБДД УВД по ЮВАО ГУ МВД России по г. Москве",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Lat = 57.000352999999997,
+                            Lon = 40.973930000000003,
+                            Name = "Управление ГИБДД по г. Иваново",
+                            RegionId = 3
                         });
                 });
 
@@ -441,7 +473,7 @@ namespace RegistrationAppointService.Migrations
             modelBuilder.Entity("RegistrationAppointService.Models.GibddOffice", b =>
                 {
                     b.HasOne("RegistrationAppointService.Models.Region", "Region")
-                        .WithMany("GibddOffices")
+                        .WithMany()
                         .HasForeignKey("RegionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -452,7 +484,7 @@ namespace RegistrationAppointService.Migrations
             modelBuilder.Entity("RegistrationAppointService.Models.RegistrationService", b =>
                 {
                     b.HasOne("RegistrationAppointService.Models.GibddOffice", "GibddOffice")
-                        .WithMany("RegistrationServices")
+                        .WithMany()
                         .HasForeignKey("GibddOfficeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -474,16 +506,6 @@ namespace RegistrationAppointService.Migrations
                     b.Navigation("Service");
 
                     b.Navigation("ServiceDateTime");
-                });
-
-            modelBuilder.Entity("RegistrationAppointService.Models.GibddOffice", b =>
-                {
-                    b.Navigation("RegistrationServices");
-                });
-
-            modelBuilder.Entity("RegistrationAppointService.Models.Region", b =>
-                {
-                    b.Navigation("GibddOffices");
                 });
 #pragma warning restore 612, 618
         }

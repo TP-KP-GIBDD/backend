@@ -51,7 +51,7 @@ namespace RegistrationAppointService.Controllers
         [HttpGet("GetAppointById/{id}")]
         public IActionResult GetAppointById(int id)
         {
-            RegistrationService appoint = regService.GetRegAppointById(id);
+            var appoint = regService.GetRegAppointById(id);
 
             if (appoint == null)
             {
@@ -64,7 +64,7 @@ namespace RegistrationAppointService.Controllers
         [HttpPost("SetStatus")]
         public IActionResult SetStatus(int regAppointId, string status)
         {
-            RegistrationService appoint = regService.GetRegAppointById(regAppointId);
+            var appoint = regService.GetRegAppointById(regAppointId);
 
             if (appoint == null)
             {

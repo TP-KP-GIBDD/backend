@@ -9,7 +9,7 @@ namespace RegistrationAppointService.Models
     public class RegServiceInfo
     {
         [Required]
-        public int CarOwenerId { get; set; }
+        public int CarOwnerId { get; set; }
 
         public int RegionId { get; set; }
 

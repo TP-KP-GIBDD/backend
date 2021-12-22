@@ -10,7 +10,7 @@ namespace RegistrationAppointService.Services.Interfaces
     {
         bool SaveRegistrationService(RegServiceInfo regService);
         IEnumerable<RegistrationService> GetAllRegAppoints();
-        RegistrationService GetRegAppointById(int id);
+        IEnumerable<RegistrationService> GetRegAppointById(int id);
         IEnumerable<RegistrationService> GetRegAppointsByCarOwnerId(int id);
         bool SetRegAppointStatus(int regAppointId, string status);
     }

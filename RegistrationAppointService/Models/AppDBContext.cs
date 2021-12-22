@@ -17,6 +17,7 @@ namespace RegistrationAppointService.Models
 
         public AppDBContext(DbContextOptions<AppDBContext> options) : base(options)
         {
+       
             Database.EnsureCreated();
         }
 
@@ -38,7 +39,11 @@ namespace RegistrationAppointService.Models
                 new GibddOffice[]
                 {
                     new GibddOffice{Id = 1, Name = "Управление ГИБДД УМВД России по Владимирской обл.", RegionId = 1, Lat=56.434, Lon=54.432},
-                    new GibddOffice{Id = 2, Name = "Отдел ГИБДД по Суздальскому району", RegionId = 1, Lat=57.434, Lon=55.432}
+                    new GibddOffice{Id = 2, Name = "Отдел ГИБДД по Суздальскому району", RegionId = 1, Lat=57.434, Lon=55.432},
+                    new GibddOffice{Id = 3, Name = "Отделение регистрации МО ГИБДД ТНРЭР № 1 ГУ МВД России по г. Москве", RegionId = 2, Lat=55.898286, Lon=37.516979},
+                    new GibddOffice{Id = 4, Name = "Управление ГИБДД ГУ МВД России по городу Москве", RegionId = 2, Lat=55.773798, Lon=37.612227},
+                    new GibddOffice{Id = 5, Name = "ОБ ДПС ГИБДД УВД по ЮВАО ГУ МВД России по г. Москве", RegionId = 2, Lat=55.675286, Lon=37.727239},
+                    new GibddOffice{Id = 6, Name = "Управление ГИБДД по г. Иваново", RegionId = 3, Lat=57.000353, Lon=40.97393},
                 }
             );
 

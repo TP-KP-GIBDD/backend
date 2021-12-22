@@ -15,6 +15,6 @@ namespace RegistrationAppointService.Models
 
         public double lon { get; set; }
 
-        public List<GibddOffice> GibddOffices { get; set; }
+        //public List<GibddOffice> GibddOffices { get; set; }
     }
 }

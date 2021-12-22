@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Controllers",
+    "\\Entities",
+    "\\Migrations",
+    "\\Models",
+    "\\Properties",
+    "\\Repositories",
+    "\\Repositories\\Abstracts"
+  ],
+  "SelectedNode": "\\AvtoAPI.csproj",
+  "PreviewInSolutionExplorer": false
+}

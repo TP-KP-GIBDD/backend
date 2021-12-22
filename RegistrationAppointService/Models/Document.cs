@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace RegistrationAppointService.Models
@@ -13,6 +14,7 @@ namespace RegistrationAppointService.Models
 
         public string Name { get; set; }
 
+        [JsonIgnore]
         public List<Service> Services { get; set; }
     }
 }

@@ -13,6 +13,6 @@ namespace RegistrationAppointService.Models
         public string Name { get; set; }
 
 
-        public List<Document> Documents { get; set; }
+        public virtual List<Document> Documents { get; set; }
     }
 }

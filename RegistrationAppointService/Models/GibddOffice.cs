@@ -19,6 +19,6 @@ namespace RegistrationAppointService.Models
 
         public double Lon { get; set; }
 
-        public List<RegistrationService> RegistrationServices { get; set; }
+        //public List<RegistrationService> RegistrationServices { get; set; }
     }
 }

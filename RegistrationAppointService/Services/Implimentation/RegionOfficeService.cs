@@ -1,4 +1,5 @@
-﻿using RegistrationAppointService.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using RegistrationAppointService.Models;
 using RegistrationAppointService.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace RegistrationAppointService.Services
             IEnumerable<GibddOffice> offices = context.GibddOffices.Where(p => p.RegionId == Id);
 
             return offices;
+            
         }
     }
 }

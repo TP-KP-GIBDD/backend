@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace RegistrationAppointService.Services.Implimentation
 {
@@ -18,17 +19,35 @@ namespace RegistrationAppointService.Services.Implimentation
 
         public IEnumerable<RegistrationService> GetAllRegAppoints()
         {
-            return context.RegistrationServices;
+            return context.RegistrationServices
+                .Include(rs => rs.GibddOffice)
+                    .ThenInclude(g => g.Region)
+                .Include(rs => rs.Service)
+                    .ThenInclude(s => s.Documents)
+                .Include(rs => rs.ServiceDateTime)
+                .ToList();
         }
-
+        
         public IEnumerable<RegistrationService> GetRegAppointsByCarOwnerId(int id)
         {
-            return context.RegistrationServices.Where(rs => rs.CarOwnerId == id);
+            return context.RegistrationServices
+                .Where(rs => rs.CarOwnerId == id)
+                .Include(rs => rs.GibddOffice)
+                    .ThenInclude(g => g.Region)
+                .Include(rs => rs.Service)
+                    .ThenInclude(s => s.Documents)
+                .Include(rs => rs.ServiceDateTime);
         }
 
-        public RegistrationService GetRegAppointById(int id)
+        public IEnumerable<RegistrationService> GetRegAppointById(int id)
         {
-            return context.RegistrationServices.Find(id);
+            return context.RegistrationServices
+                .Where(rs => rs.Id == id)
+                .Include(rs => rs.GibddOffice)
+                    .ThenInclude(g => g.Region)
+                .Include(rs => rs.Service)
+                    .ThenInclude(s => s.Documents)
+                .Include(rs => rs.ServiceDateTime);
         }
 
         public bool SaveRegistrationService(RegServiceInfo regService)
@@ -45,7 +64,7 @@ namespace RegistrationAppointService.Services.Implimentation
             service.Status = "Ожидает выполнение";
             service.ServiceDateTimeId = regService.DateTimeId;
             service.GibddOfficeId = regService.GibddOfficeId;
-            service.CarOwnerId = regService.CarOwenerId;
+            service.CarOwnerId = regService.CarOwnerId;
             service.ServiceId = regService.ServiceId;
 
             context.Add(service);
