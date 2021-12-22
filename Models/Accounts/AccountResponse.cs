@@ -1,6 +1,6 @@
 using System;
 
-namespace WebApi.Models.Accounts
+namespace Registration.Models.Accounts
 {
     public class AccountResponse
     {

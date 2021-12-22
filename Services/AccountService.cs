@@ -9,29 +9,13 @@ using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using WebApi.Entities;
-using WebApi.Helpers;
-using WebApi.Models.Accounts;
+using Registration.Entities;
+using Registration.Helpers;
+using Registration.Models.Accounts;
+using Registration.Services.Abstracts;
 
-namespace WebApi.Services
+namespace Registration.Services
 {
-    public interface IAccountService
-    {
-        AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress);
-        AuthenticateResponse RefreshToken(string token, string ipAddress);
-        void RevokeToken(string token, string ipAddress);
-        void Register(RegisterRequest model, string origin);
-        void VerifyEmail(string token);
-        void ForgotPassword(ForgotPasswordRequest model, string origin);
-        void ValidateResetToken(ValidateResetTokenRequest model);
-        void ResetPassword(ResetPasswordRequest model);
-        IEnumerable<AccountResponse> GetAll();
-        AccountResponse GetById(int id);
-        AccountResponse Create(CreateRequest model);
-        AccountResponse Update(int id, UpdateRequest model);
-        void Delete(int id);
-    }
-
     public class AccountService : IAccountService
     {
         private readonly DataContext _context;
@@ -55,18 +39,22 @@ namespace WebApi.Services
         {
             var account = _context.Accounts.SingleOrDefault(x => x.Email == model.Email);
 
-            if (account == null || !account.IsVerified || !BC.Verify(model.Password, account.PasswordHash))
-                throw new AppException("Email or password is incorrect");
+            if (account == null)
+                throw new AppException("Email is incorrect");
+            if (!account.IsVerified)
+                throw new AppException("Email is incorrect");
+            if (!BC.Verify(model.Password, account.PasswordHash))
+                throw new AppException("Password is incorrect");
 
-            // authentication successful so generate jwt and refresh tokens
+            // аутентификация прошла успешно, поэтому создаем jwt токен и обновляем его
             var jwtToken = generateJwtToken(account);
             var refreshToken = generateRefreshToken(ipAddress);
             account.RefreshTokens.Add(refreshToken);
 
-            // remove old refresh tokens from account
+            // удаляем старые токены обновления из учетной записи
             removeOldRefreshTokens(account);
 
-            // save changes to db
+            // сохраняем изменения в БД
             _context.Update(account);
             _context.SaveChanges();
 
@@ -80,7 +68,7 @@ namespace WebApi.Services
         {
             var (refreshToken, account) = getRefreshToken(token);
 
-            // replace old refresh token with a new one and save
+            // меняем старый маркер обновления новым и сохраняем
             var newRefreshToken = generateRefreshToken(ipAddress);
             refreshToken.Revoked = DateTime.UtcNow;
             refreshToken.RevokedByIp = ipAddress;
@@ -92,7 +80,7 @@ namespace WebApi.Services
             _context.Update(account);
             _context.SaveChanges();
 
-            // generate new jwt
+            // создаем новый jwt токен
             var jwtToken = generateJwtToken(account);
 
             var response = _mapper.Map<AuthenticateResponse>(account);
@@ -105,7 +93,7 @@ namespace WebApi.Services
         {
             var (refreshToken, account) = getRefreshToken(token);
 
-            // revoke token and save
+            // аннулируем токен и сохраняем
             refreshToken.Revoked = DateTime.UtcNow;
             refreshToken.RevokedByIp = ipAddress;
             _context.Update(account);
@@ -114,62 +102,51 @@ namespace WebApi.Services
 
         public void Register(RegisterRequest model, string origin)
         {
-            // validate
+            // валидация
             if (_context.Accounts.Any(x => x.Email == model.Email))
             {
-                // send already registered error in email to prevent account enumeration
+                // если пользователь с данным email существует, сообщить об ошибке
                 sendAlreadyRegisteredEmail(model.Email, origin);
                 return;
             }
 
-            // map model to new account object
+            // сопоставляем модель с новым объектом учетной записи
             var account = _mapper.Map<Account>(model);
 
-            // first registered account is an admin
+            // первый зарегестрированный аккаунт будет администратором
             var isFirstAccount = _context.Accounts.Count() == 0;
             account.Role = isFirstAccount ? Role.Admin : Role.Carowner;
             account.Created = DateTime.UtcNow;
             account.VerificationToken = randomTokenString();
-
-            // hash password
-            account.PasswordHash = BC.HashPassword(model.Password);
-
-            // save account
-            _context.Accounts.Add(account);
-            _context.SaveChanges();
-
-            // send email
-            sendVerificationEmail(account, origin);
-        }
-
-        public void VerifyEmail(string token)
-        {
-            var account = _context.Accounts.SingleOrDefault(x => x.VerificationToken == token);
-
-            if (account == null) throw new AppException("Verification failed");
-
             account.Verified = DateTime.UtcNow;
             account.VerificationToken = null;
 
-            _context.Accounts.Update(account);
+            // хеш пароля
+            account.PasswordHash = BC.HashPassword(model.Password);
+
+            // сохранение аккаунта
+            _context.Accounts.Add(account);
             _context.SaveChanges();
+
+            // отправка email
+            sendVerificationEmail(account, origin);
         }
 
         public void ForgotPassword(ForgotPasswordRequest model, string origin)
         {
             var account = _context.Accounts.SingleOrDefault(x => x.Email == model.Email);
 
-            // always return ok response to prevent email enumeration
+            // предотвращение перечисления электронной почты
             if (account == null) return;
 
-            // create reset token that expires after 1 day
+            // создаем токен сброса, срок действия которого истекает через 1 день
             account.ResetToken = randomTokenString();
             account.ResetTokenExpires = DateTime.UtcNow.AddDays(1);
 
             _context.Accounts.Update(account);
             _context.SaveChanges();
 
-            // send email
+            // отправка email
             sendPasswordResetEmail(account, origin);
         }
 
@@ -192,7 +169,7 @@ namespace WebApi.Services
             if (account == null)
                 throw new AppException("Invalid token");
 
-            // update password and remove reset token
+            // обновляем пароль и удаляем токен сброса
             account.PasswordHash = BC.HashPassword(model.Password);
             account.PasswordReset = DateTime.UtcNow;
             account.ResetToken = null;
@@ -216,19 +193,19 @@ namespace WebApi.Services
 
         public AccountResponse Create(CreateRequest model)
         {
-            // validate
+            // валидация
             if (_context.Accounts.Any(x => x.Email == model.Email))
                 throw new AppException($"Email '{model.Email}' is already registered");
 
-            // map model to new account object
+            // сопоставим модель с новым объектом учетной записи
             var account = _mapper.Map<Account>(model);
             account.Created = DateTime.UtcNow;
             account.Verified = DateTime.UtcNow;
 
-            // hash password
+            // хеш пароля
             account.PasswordHash = BC.HashPassword(model.Password);
 
-            // save account
+            // сохраняем аккаунт
             _context.Accounts.Add(account);
             _context.SaveChanges();
 
@@ -239,15 +216,15 @@ namespace WebApi.Services
         {
             var account = getAccount(id);
 
-            // validate
+            // валидация
             if (account.Email != model.Email && _context.Accounts.Any(x => x.Email == model.Email))
                 throw new AppException($"Email '{model.Email}' is already taken");
 
-            // hash password if it was entered
+            // хеш пароля если он был введен
             if (!string.IsNullOrEmpty(model.Password))
                 account.PasswordHash = BC.HashPassword(model.Password);
 
-            // copy model to account and save
+            // скопируем модель в учетную запись и сохраним
             _mapper.Map(model, account);
             account.Updated = DateTime.UtcNow;
             _context.Accounts.Update(account);
@@ -263,7 +240,7 @@ namespace WebApi.Services
             _context.SaveChanges();
         }
 
-        // helper methods
+        // дополнительные методы
 
         private Account getAccount(int id)
         {
@@ -318,7 +295,7 @@ namespace WebApi.Services
             using var rngCryptoServiceProvider = new RNGCryptoServiceProvider();
             var randomBytes = new byte[40];
             rngCryptoServiceProvider.GetBytes(randomBytes);
-            // convert random bytes to hex string
+            // преобразование случайных байтов в шестнадцатеричную строку
             return BitConverter.ToString(randomBytes).Replace("-", "");
         }
 

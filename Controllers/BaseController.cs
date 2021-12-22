@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Entities;
+using Registration.Entities;
 
-namespace WebApi.Controllers
+namespace Registration.Controllers
 {
     [Controller]
     public abstract class BaseController : ControllerBase
     {
-        // returns the current authenticated account (null if not logged in)
+        // возвращает текущую аутентифицированную учетную запись (нулевая, если не выполнен вход в систему)
         public Account Account => (Account)HttpContext.Items["Account"];
     }
 }

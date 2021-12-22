@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using WebApi.Entities;
+using Registration.Entities;
 
-namespace WebApi.Helpers
+namespace Registration.Helpers
 {
     public class DataContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Data> Data { get; set; }
         
         private readonly IConfiguration Configuration;
 
@@ -17,7 +18,7 @@ namespace WebApi.Helpers
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            // connect to sqlite database
+            // подключение к sqlserver БД
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
         }
     }

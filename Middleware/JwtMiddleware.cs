@@ -6,9 +6,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApi.Helpers;
+using Registration.Helpers;
 
-namespace WebApi.Middleware
+namespace Registration.Middleware
 {
     public class JwtMiddleware
     {
@@ -43,20 +43,20 @@ namespace WebApi.Middleware
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    // set clockskew to zero so tokens expire exactly at token expiration time (instead of 5 minutes later)
+                    // установим clockskew равным нулю, чтобы токены истекали точно во время истечения срока действия токена (вместо 5 минут)
                     ClockSkew = TimeSpan.Zero
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var accountId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
-                // attach account to context on successful jwt validation
+                // прикрепим учетную запись к контексту при успешной проверке jwt
                 context.Items["Account"] = await dataContext.Accounts.FindAsync(accountId);
             }
             catch 
             {
-                // do nothing if jwt validation fails
-                // account is not attached to context so request won't have access to secure routes
+                // ничего не делаем, если проверка jwt завершится неудачей
+                // учетная запись не привязана к контексту, поэтому запрос не будет иметь доступа к безопасным маршрутам
             }
         }
     }

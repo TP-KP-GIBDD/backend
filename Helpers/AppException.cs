@@ -1,10 +1,10 @@
 using System;
 using System.Globalization;
 
-namespace WebApi.Helpers
+namespace Registration.Helpers
 {
-    // custom exception class for throwing application specific exceptions 
-    // that can be caught and handled within the application
+    // класс исключений, специфичных для приложения,
+    // которые могут быть обнаружены и обработаны в нем
     public class AppException : Exception
     {
         public AppException() : base() {}

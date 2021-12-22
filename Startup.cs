@@ -3,11 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using WebApi.Helpers;
-using WebApi.Middleware;
-using WebApi.Services;
+using Registration.Helpers;
+using Registration.Middleware;
+using Registration.Services;
+using Registration.Services.Abstracts;
 
-namespace WebApi
+namespace Registration
 {
     public class Startup
     {

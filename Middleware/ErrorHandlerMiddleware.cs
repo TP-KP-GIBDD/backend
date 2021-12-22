@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
-using WebApi.Helpers;
+using Registration.Helpers;
 
-namespace WebApi.Middleware
+namespace Registration.Middleware
 {
     public class ErrorHandlerMiddleware
     {
@@ -34,15 +34,15 @@ namespace WebApi.Middleware
                 switch(error)
                 {
                     case AppException e:
-                        // custom application error
+                        // ошибка пользовательского приложения
                         response.StatusCode = (int)HttpStatusCode.BadRequest;
                         break;
                     case KeyNotFoundException e:
-                        // not found error
+                        // ошибка отсутствия
                         response.StatusCode = (int)HttpStatusCode.NotFound;
                         break;
                     default:
-                        // unhandled error
+                        // необработанная ошибка
                         _logger.LogError(error, error.Message);
                         response.StatusCode = (int)HttpStatusCode.InternalServerError;
                         break;

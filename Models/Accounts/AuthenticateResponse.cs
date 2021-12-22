@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace WebApi.Models.Accounts
+namespace Registration.Models.Accounts
 {
     public class AuthenticateResponse
     {
@@ -16,7 +16,7 @@ namespace WebApi.Models.Accounts
         public bool IsVerified { get; set; }
         public string JwtToken { get; set; }
 
-        [JsonIgnore] // refresh token is returned in http only cookie
+        [JsonIgnore] //токен обновлени€ возвращаетс€ в файле cookie только дл€ http
         public string RefreshToken { get; set; }
     }
 }

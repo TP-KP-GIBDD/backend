@@ -3,24 +3,28 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using WebApi.Entities;
-using WebApi.Models.Accounts;
-using WebApi.Services;
+using Registration.Entities;
+using Registration.Models.Accounts;
+using Registration.Services.Abstracts;
+using Registration.Models.Docs;
 
-namespace WebApi.Controllers
+namespace Registration.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class AccountsController : BaseController
     {
         private readonly IAccountService _accountService;
+        private readonly IDocService _docService;
         private readonly IMapper _mapper;
 
         public AccountsController(
             IAccountService accountService,
+            IDocService docService,
             IMapper mapper)
         {
             _accountService = accountService;
+            _docService = docService;
             _mapper = mapper;
         }
 
@@ -45,13 +49,13 @@ namespace WebApi.Controllers
         [HttpPost("revoke-token")]
         public IActionResult RevokeToken(RevokeTokenRequest model)
         {
-            // accept token from request body or cookie
+            // принимаем токен из запроса или файла cookie
             var token = model.Token ?? Request.Cookies["refreshToken"];
 
             if (string.IsNullOrEmpty(token))
                 return BadRequest(new { message = "Token is required" });
 
-            // users can revoke their own tokens and admins can revoke any tokens
+            // пользователи могут отозвать свои собственные токены, а администраторы могут отозвать любые токены
             if (!Account.OwnsToken(token) && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
 
@@ -63,14 +67,7 @@ namespace WebApi.Controllers
         public IActionResult Register(RegisterRequest model)
         {
             _accountService.Register(model, Request.Headers["origin"]);
-            return Ok(new { message = "Registration successful, please check your email for verification instructions" });
-        }
-
-        [HttpPost("verify-email")]
-        public IActionResult VerifyEmail(VerifyEmailRequest model)
-        {
-            _accountService.VerifyEmail(model.Token);
-            return Ok(new { message = "Verification successful, you can now login" });
+            return Ok(new { message = "Registration successful" });
         }
 
         [HttpPost("forgot-password")]
@@ -106,7 +103,7 @@ namespace WebApi.Controllers
         [HttpGet("{id:int}")]
         public ActionResult<AccountResponse> GetById(int id)
         {
-            // users can get their own account and admins can get any account
+            //пользователи могут получить свою собственную учетную запись, а администраторы могут получить любую учетную запись
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
 
@@ -126,11 +123,11 @@ namespace WebApi.Controllers
         [HttpPut("{id:int}")]
         public ActionResult<AccountResponse> Update(int id, UpdateRequest model)
         {
-            // users can update their own account and admins can update any account
+            // пользователи могут обновлять свою собственную учетную запись, а администраторы могут обновлять любую учетную запись
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
 
-            // only admins can update role
+            // только администраторы могут изменить роль
             if (Account.Role != Role.Admin)
                 model.Role = null;
 
@@ -142,7 +139,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id:int}")]
         public IActionResult Delete(int id)
         {
-            // users can delete their own account and admins can delete any account
+            // пользователи могут удалить свою собственную учетную запись, а администраторы могут удалить любую учетную запись
             if (id != Account.Id && Account.Role != Role.Admin)
                 return Unauthorized(new { message = "Unauthorized" });
 
@@ -150,7 +147,53 @@ namespace WebApi.Controllers
             return Ok(new { message = "Account deleted successfully" });
         }
 
-        // helper methods
+        [Authorize]
+        [HttpPost("addPassport")]
+        public IActionResult addPassport (PassportRequest model)
+        {
+            _docService.AddPassport(model, Request.Headers["origin"]);
+            return Ok(new { message = "Added passport" });
+        }
+
+        [Authorize]
+        [HttpPost("addDriverLicence")]
+        public IActionResult addDriverLicence(DriverLicenceRequest model)
+        {
+            _docService.AddDriverLicence(model, Request.Headers["origin"]);
+            return Ok(new { message = "Added driver licence" });
+        }
+
+        [Authorize(Role.Admin)]
+        [HttpPost("addIdentityCard")]
+        public IActionResult addIdentityCard(IdentityCardRequest model)
+        {
+            _docService.AddIdentityCard(model, Request.Headers["origin"]);
+            return Ok(new { message = "Added identity card" });
+        }
+
+        [Authorize]
+        [HttpPut("{id:int}")]
+        public ActionResult<PassportResponce> UpdatePassport(int id, PassportRequest model)
+        {
+            var data = _docService.UpdatePassport(id, model);
+            return Ok(data);
+        }
+
+        [Authorize]
+        [HttpPut("{id:int}")]
+        public ActionResult<DriverLicenceResponce> UpdateDriverLicence(int id, DriverLicenceRequest model)
+        {
+            var data = _docService.UpdateDriverLicence(id, model);
+            return Ok(data);
+        }
+
+        [Authorize(Role.Admin)]
+        [HttpPut("{id:int}")]
+        public ActionResult<IdentityCardResponce> UpdateIdentityCard(int id, IdentityCardRequest model)
+        {
+            var data = _docService.UpdateIdentityCard(id, model);
+            return Ok(data);
+        }
 
         private void setTokenCookie(string token)
         {

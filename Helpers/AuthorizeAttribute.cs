@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using WebApi.Entities;
+using Registration.Entities;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
@@ -21,7 +21,7 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
         var account = (Account)context.HttpContext.Items["Account"];
         if (account == null || (_roles.Any() && !_roles.Contains(account.Role)))
         {
-            // not logged in or role not authorized
+            // не вошел в систему или роль не авторизована
             context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
         }
     }

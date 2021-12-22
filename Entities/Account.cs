@@ -1,10 +1,13 @@
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Entities
+namespace Registration.Entities
 {
     public class Account
     {
+        [Key]
         public int Id { get; set; }
         public string Title { get; set; }
         public string FirstName { get; set; }
@@ -22,6 +25,7 @@ namespace WebApi.Entities
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
         public List<RefreshToken> RefreshTokens { get; set; }
+        public List<Data> Data { get; set; }
 
         public bool OwnsToken(string token) 
         {

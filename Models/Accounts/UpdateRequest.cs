@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using WebApi.Entities;
+using Registration.Entities;
 
-namespace WebApi.Models.Accounts
+namespace Registration.Models.Accounts
 {
     public class UpdateRequest
     {
@@ -42,11 +42,9 @@ namespace WebApi.Models.Accounts
             set => _confirmPassword = replaceEmptyWithNull(value);
         }
 
-        // helpers
-
         private string replaceEmptyWithNull(string value)
         {
-            // replace empty string with null to make field optional
+            //замена пустой строки на null, чтобы сделать поле необязательным
             return string.IsNullOrEmpty(value) ? null : value;
         }
     }
