@@ -12,10 +12,10 @@ namespace DTP.Entities
         [Key]
         [Column ("Id")]
         public int Id { get; set; }
-        [Column ("Coordinates")]
-        public string Coordinates { get; set; }
-        [Column ("ObjectsAroundRoad")]
-        public string ObjectsAroundRoad { get; set; }
+        [Column ("CoordinatesId")]
+        [ForeignKey(nameof(Coordinates))]
+        public int CoordinatesId { get; set; }
+        public virtual Coordinates Coordinates { get; set; }
         [Column ("TypeLighting")]
         public string TypeLighting { get; set; }
         [Column ("RoadSigns")]

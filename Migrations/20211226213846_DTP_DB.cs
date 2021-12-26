@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DTP.Migrations
 {
-    public partial class db_DTP : Migration
+    public partial class DTP_DB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,21 +21,17 @@ namespace DTP.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlaceViolation",
+                name: "Coordinates",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Coordinates = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ObjectsAroundRoad = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeLighting = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoadSigns = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MethodTrafficRegulation = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoadMarkup = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Latitude = table.Column<int>(type: "int", nullable: false),
+                    Longitube = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlaceViolation", x => x.Id);
+                    table.PrimaryKey("PK_Coordinates", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -62,6 +58,29 @@ namespace DTP.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TypeViolations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlaceViolation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CoordinatesId = table.Column<int>(type: "int", nullable: false),
+                    TypeLighting = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoadSigns = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MethodTrafficRegulation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoadMarkup = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlaceViolation", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlaceViolation_Coordinates_CoordinatesId",
+                        column: x => x.CoordinatesId,
+                        principalTable: "Coordinates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,6 +193,11 @@ namespace DTP.Migrations
                 column: "avtoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PlaceViolation_CoordinatesId",
+                table: "PlaceViolation",
+                column: "CoordinatesId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Protocols_participantsId",
                 table: "Protocols",
                 column: "participantsId");
@@ -205,6 +229,9 @@ namespace DTP.Migrations
 
             migrationBuilder.DropTable(
                 name: "avto");
+
+            migrationBuilder.DropTable(
+                name: "Coordinates");
 
             migrationBuilder.DropTable(
                 name: "body_type");

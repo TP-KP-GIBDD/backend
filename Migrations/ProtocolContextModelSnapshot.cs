@@ -106,6 +106,27 @@ namespace DTP.Migrations
                     b.ToTable("rudder");
                 });
 
+            modelBuilder.Entity("DTP.Entities.Coordinates", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Latitube")
+                        .HasColumnType("int")
+                        .HasColumnName("Latitude");
+
+                    b.Property<int>("Longitube")
+                        .HasColumnType("int")
+                        .HasColumnName("Longitube");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coordinates");
+                });
+
             modelBuilder.Entity("DTP.Entities.Participants", b =>
                 {
                     b.Property<int>("Id")
@@ -149,17 +170,13 @@ namespace DTP.Migrations
                         .HasColumnName("Id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Coordinates")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Coordinates");
+                    b.Property<int>("CoordinatesId")
+                        .HasColumnType("int")
+                        .HasColumnName("CoordinatesId");
 
                     b.Property<string>("MethodTrafficRegulation")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("MethodTrafficRegulation");
-
-                    b.Property<string>("ObjectsAroundRoad")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("ObjectsAroundRoad");
 
                     b.Property<string>("RoadMarkup")
                         .HasColumnType("nvarchar(max)")
@@ -174,6 +191,8 @@ namespace DTP.Migrations
                         .HasColumnName("TypeLighting");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CoordinatesId");
 
                     b.ToTable("PlaceViolation");
                 });
@@ -274,6 +293,17 @@ namespace DTP.Migrations
                         .IsRequired();
 
                     b.Navigation("Avto");
+                });
+
+            modelBuilder.Entity("DTP.Entities.PlaceViolation", b =>
+                {
+                    b.HasOne("DTP.Entities.Coordinates", "Coordinates")
+                        .WithMany()
+                        .HasForeignKey("CoordinatesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coordinates");
                 });
 
             modelBuilder.Entity("DTP.Entities.Protocol", b =>
