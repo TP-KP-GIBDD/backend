@@ -61,8 +61,8 @@ namespace RegistrationAppointService.Controllers
             return Ok(appoint);
         }
 
-        [HttpPost("SetStatus")]
-        public IActionResult SetStatus(int regAppointId, string status)
+        [HttpPost("SetStatus/{regAppointId}")]
+        public IActionResult SetStatus(int regAppointId, [FromQuery] string status)
         {
             var appoint = regService.GetRegAppointById(regAppointId);
 
