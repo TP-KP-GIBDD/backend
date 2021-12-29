@@ -7,7 +7,7 @@ namespace Registration.Helpers
     public class DataContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
-        public DbSet<Data> Data { get; set; }
+        //public DbSet<Data> Data { get; set; }
         
         private readonly IConfiguration Configuration;
 

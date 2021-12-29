@@ -15,7 +15,7 @@ namespace Registration.Entities
         public string Birthday { get; set; }
         public string Gender { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string PasswordHash { get; set; }
         public bool AcceptTerms { get; set; }
         public Role Role { get; set; }
@@ -27,9 +27,6 @@ namespace Registration.Entities
         public DateTime? PasswordReset { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
-
-        //public int DataId { get; set; }
-        //public Data Data { get; set; }
 
         public List<RefreshToken> RefreshTokens { get; set; }
 

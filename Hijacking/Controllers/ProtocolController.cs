@@ -20,7 +20,7 @@ namespace Hijacking.Controllers
 
 
         [HttpGet]
-        [Route(nameof(GetProtocol))]
+        [Route("/getById/{id}")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetProtocol([FromQuery] int id)
         {
@@ -28,7 +28,7 @@ namespace Hijacking.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetProtocols))]
+        [Route("/getAll")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetProtocols()
         {
@@ -36,7 +36,7 @@ namespace Hijacking.Controllers
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("/create")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> Create([FromQuery] Protocol protocol)
         {
@@ -44,7 +44,7 @@ namespace Hijacking.Controllers
         }
 
         [HttpDelete]
-        [Route(nameof(Delete))]
+        [Route("/delete")]
         /*[Authorize(Role.Admin)]*/
         public async Task Delete([FromQuery] int id)
         {
@@ -52,7 +52,7 @@ namespace Hijacking.Controllers
         }
 
         [HttpPut]
-        [Route(nameof(Update))]
+        [Route("/update")]
         /*[Authorize(Role.Inspector)]*/
         public async Task Update([FromQuery] Protocol protocol)
         {

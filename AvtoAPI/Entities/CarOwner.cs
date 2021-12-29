@@ -17,7 +17,9 @@ namespace AvtoAPI.Entities
         [Column("person_id")]
         public int PersonId { get; set; }
 
-        [Column("avto_id")]       
+        [Column("avto_id")]
+        [ForeignKey(nameof(Avto))]       
         public int AvtoId { get; set; }
+        public virtual Avto Avto { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AvtoAPI.Repositories;
+using AvtoAPI.Repositories.Abstracts;
 using AvtoAPI.Services;
 using AvtoAPI.Services.Abstracts;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,10 @@ namespace AvtoAPI
                 .AddTransient<IAvtoRepository, AvtoRepository>()
                 .AddTransient<IBodyTypeRepository, BodyTypeRepository>()
                 .AddTransient<ICarOwnerRepository, CarOwnerRepository>()
-                .AddTransient<IRudderRepository, RudderRepository>();
+                .AddTransient<IRudderRepository, RudderRepository>()
+                .AddTransient<IBrandModelRepository, BrandModelRepository>()
+                .AddTransient<IBrandRepository, BrandRepository>()
+                .AddTransient<IColorAvtoRepository, ColorAvtoRepository>();
         }
 
         public static IServiceCollection AddAvtoServicesDI(this IServiceCollection services)
@@ -26,7 +30,11 @@ namespace AvtoAPI
                 .AddScoped<IAvtoService, AvtoService>()
                 .AddScoped<IBodyTypeService, BodyTypeService>()
                 .AddScoped<ICarOwnerService, CarOwnerService>()
-                .AddScoped<IRudderService, RudderService>();
+                .AddScoped<IRudderService, RudderService>()
+                .AddScoped<IBrandService, BrandService>()
+                .AddScoped<IBrandModelService, BrandModelService>()
+                .AddScoped<IColorAvtoService, ColorAvtoService>();
+
         }
     }
 }

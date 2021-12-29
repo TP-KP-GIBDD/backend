@@ -20,11 +20,11 @@ namespace AvtoAPI.Entities
         [Column("vin")]
         public string Vin { get; set; }
 
-        [Column("brand")]
-        public string Brand { get; set; }
+        [Column("brand_model_id")]
+        [ForeignKey(nameof(BrandModel))]
+        public int BrandModelId { get; set; }
 
-        [Column("model")]
-        public string Model { get; set; }
+        public virtual BrandModel BrandModel { get; set; }
 
         [Column("year")]
         public int Year { get; set; }
@@ -32,8 +32,11 @@ namespace AvtoAPI.Entities
         [Column("power")]
         public int Power { get; set; }
 
-        [Column("color")]
-        public string Color { get; set; }
+        [Column("color_id")]
+        [ForeignKey(nameof(Color))]
+        public int ColorId { get; set; }
+
+        public virtual ColorAvto Color { get; set; }
 
         [Column("body_type_id")]
         [ForeignKey(nameof(BodyType))]

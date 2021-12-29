@@ -12,6 +12,11 @@ namespace AvtoAPI.Services
     {
         private readonly ICarOwnerRepository _carOwnerRepository;
 
+        public CarOwnerService(ICarOwnerRepository carOwnerRepository)
+        {
+            _carOwnerRepository = carOwnerRepository;
+        }
+
         public async Task<CarOwner> Create(CarOwner carOwner)
         {
             return await _carOwnerRepository.Create(carOwner);

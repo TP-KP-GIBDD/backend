@@ -20,7 +20,7 @@ using RegistrationAppointService.Services.Implimentation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Newtonsoft.Json;
+//using Newtonsoft.Json;
 
 namespace RegistrationAppointService
 {

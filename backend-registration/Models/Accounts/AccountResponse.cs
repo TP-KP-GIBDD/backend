@@ -12,7 +12,7 @@ namespace Registration.Models.Accounts
         public string Birthday { get; set; }
         public string Gender { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string Role { get; set; }
         public int InfoUserId { get; set; }
         public DateTime Created { get; set; }

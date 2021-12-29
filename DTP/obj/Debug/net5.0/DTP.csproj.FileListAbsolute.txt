@@ -139,3 +139,6 @@ D:\studing\C#\DTP\DTP\obj\Debug\net5.0\ref\DTP.dll
 D:\studing\C#\DTP\DTP\obj\Debug\net5.0\DTP.pdb
 D:\studing\C#\DTP\DTP\obj\Debug\net5.0\DTP.genruntimeconfig.cache
 D:\studing\C#\DTP\DTP\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\qqq\Desktop\gibdd-backend\DTP\obj\Debug\net5.0\DTP.dll
+C:\Users\qqq\Desktop\gibdd-backend\DTP\obj\Debug\net5.0\ref\DTP.dll
+C:\Users\qqq\Desktop\gibdd-backend\DTP\obj\Debug\net5.0\DTP.pdb

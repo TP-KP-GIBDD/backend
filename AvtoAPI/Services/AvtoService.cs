@@ -13,6 +13,11 @@ namespace AvtoAPI.Services
     {
         private readonly IAvtoRepository _avtoRepository;
 
+        public AvtoService(IAvtoRepository avtoRepository)
+        {
+            _avtoRepository = avtoRepository;
+        }
+
         public async Task<Avto> Create(Avto avto)
         {
             return await _avtoRepository.Create(avto);

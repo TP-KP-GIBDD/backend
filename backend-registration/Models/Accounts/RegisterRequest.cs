@@ -20,7 +20,7 @@ namespace Registration.Models.Accounts
         public string Gender { get; set; }
 
         [Required]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
         [Required]
         [EmailAddress]

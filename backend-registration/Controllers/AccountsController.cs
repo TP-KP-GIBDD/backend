@@ -119,17 +119,17 @@ namespace Registration.Controllers
             return Ok(account);
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPut("{id:int}")]
         public ActionResult<AccountResponse> Update(int id, UpdateRequest model)
         {
             // пользователи могут обновлять свою собственную учетную запись, а администраторы могут обновлять любую учетную запись
-            if (id != Account.Id && Account.Role != Role.Admin)
-                return Unauthorized(new { message = "Unauthorized" });
+            //if (id != Account.Id && Account.Role != Role.Admin)
+            //    return Unauthorized(new { message = "Unauthorized" });
 
             // только администраторы могут изменить роль
-            if (Account.Role != Role.Admin)
-                model.Role = null;
+            //if (Account.Role != Role.Admin)
+            //    model.Role = null;
 
             var account = _accountService.Update(id, model);
             return Ok(account);

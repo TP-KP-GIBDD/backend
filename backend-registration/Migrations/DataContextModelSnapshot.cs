@@ -35,9 +35,6 @@ namespace Registration.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DataId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -59,8 +56,8 @@ namespace Registration.Migrations
                     b.Property<DateTime?>("PasswordReset")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ResetToken")
                         .HasColumnType("nvarchar(max)");
@@ -87,56 +84,6 @@ namespace Registration.Migrations
 
             modelBuilder.Entity("Registration.Entities.Account", b =>
                 {
-                    b.OwnsOne("Registration.Entities.Data", "Data", b1 =>
-                        {
-                            b1.Property<int>("Id")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                            b1.Property<int>("AccountId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("Address")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<DateTime>("DateIssueDriverLicence")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<DateTime>("DateIssuePassport")
-                                .HasColumnType("datetime2");
-
-                            b1.Property<int>("NumberDriverLicence")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("NumberIdentityCard")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("NumberPassport")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("SeriesDriverLicence")
-                                .HasColumnType("int");
-
-                            b1.Property<int>("SeriesPassport")
-                                .HasColumnType("int");
-
-                            b1.Property<DateTime>("ValidityPeriodDriverLicence")
-                                .HasColumnType("datetime2");
-
-                            b1.HasKey("Id");
-
-                            b1.HasIndex("AccountId")
-                                .IsUnique();
-
-                            b1.ToTable("Data");
-
-                            b1.WithOwner("Account")
-                                .HasForeignKey("AccountId");
-
-                            b1.Navigation("Account");
-                        });
-
                     b.OwnsMany("Registration.Entities.RefreshToken", "RefreshTokens", b1 =>
                         {
                             b1.Property<int>("Id")
@@ -179,8 +126,6 @@ namespace Registration.Migrations
 
                             b1.Navigation("Account");
                         });
-
-                    b.Navigation("Data");
 
                     b.Navigation("RefreshTokens");
                 });

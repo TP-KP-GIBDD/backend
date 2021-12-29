@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Registration.Entities;
 using RegistrationAppointService.Models;
 using RegistrationAppointService.Services.Interfaces;
 using System;
@@ -22,7 +23,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpPost]
-        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize]
         public IActionResult createAppoint([FromBody] RegServiceInfo serviceInfo)
         {
           
@@ -35,12 +36,14 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpGet("GetAllAppoints")]
+        //[Authorize(Role.Inspector)]
         public IActionResult GetAllAppoints()
         {
             return Ok(regService.GetAllRegAppoints());
         }
 
         [HttpGet("GetAppointsByCarOwnerId/{id}")]
+        //[Authorize]
         public IActionResult GetAppointsByCarOwnerId(int id)
         {
             // Логика поиска carOwner из микросервиса автовладелец
@@ -49,6 +52,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpGet("GetAppointById/{id}")]
+        //[Authorize]
         public IActionResult GetAppointById(int id)
         {
             var appoint = regService.GetRegAppointById(id);
@@ -62,6 +66,7 @@ namespace RegistrationAppointService.Controllers
         }
 
         [HttpPost("SetStatus/{regAppointId}")]
+        //[Authorize(Role.Inspector)]
         public IActionResult SetStatus(int regAppointId, [FromQuery] string status)
         {
             var appoint = regService.GetRegAppointById(regAppointId);

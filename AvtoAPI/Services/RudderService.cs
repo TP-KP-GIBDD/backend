@@ -12,6 +12,12 @@ namespace AvtoAPI.Services
     public class RudderService : IRudderService
     {
         private readonly IRudderRepository _rudderRepository;
+
+        public RudderService(IRudderRepository rudderRepository)
+        {
+            _rudderRepository = rudderRepository;
+        }
+
         public async Task<Rudder> Create(Rudder rudder)
         {
             return await _rudderRepository.Create(rudder);

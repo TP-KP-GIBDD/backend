@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Registration.Migrations
 {
-    public partial class Accounts_DB : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,13 @@ namespace Registration.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Birthday = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AcceptTerms = table.Column<bool>(type: "bit", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
@@ -31,34 +34,6 @@ namespace Registration.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Data",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountId = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SeriesPassport = table.Column<int>(type: "int", nullable: false),
-                    NumberPassport = table.Column<int>(type: "int", nullable: false),
-                    DateIssuePassport = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SeriesDriverLicence = table.Column<int>(type: "int", nullable: false),
-                    NumberDriverLicence = table.Column<int>(type: "int", nullable: false),
-                    DateIssueDriverLicence = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ValidityPeriodDriverLicence = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NumberIdentityCard = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Data", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Data_Accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,11 +63,6 @@ namespace Registration.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Data_AccountId",
-                table: "Data",
-                column: "AccountId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_AccountId",
                 table: "RefreshToken",
                 column: "AccountId");
@@ -100,9 +70,6 @@ namespace Registration.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Data");
-
             migrationBuilder.DropTable(
                 name: "RefreshToken");
 

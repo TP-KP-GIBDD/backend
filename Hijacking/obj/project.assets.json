@@ -5980,20 +5980,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\serge\\.nuget\\packages\\": {}
+    "C:\\Users\\qqq\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\studing\\C#\\Hijacking\\Hijacking\\Hijacking.csproj",
+      "projectUniqueName": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Hijacking\\Hijacking.csproj",
       "projectName": "Hijacking",
-      "projectPath": "D:\\studing\\C#\\Hijacking\\Hijacking\\Hijacking.csproj",
-      "packagesPath": "C:\\Users\\serge\\.nuget\\packages\\",
-      "outputPath": "D:\\studing\\C#\\Hijacking\\Hijacking\\obj\\",
+      "projectPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Hijacking\\Hijacking.csproj",
+      "packagesPath": "C:\\Users\\qqq\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Hijacking\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\serge\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\qqq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -6061,7 +6066,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

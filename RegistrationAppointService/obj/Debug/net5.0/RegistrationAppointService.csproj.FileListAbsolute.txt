@@ -218,7 +218,6 @@ C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\M
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -251,3 +250,15 @@ C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\obj\Debug\net5.0\s
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\obj\Debug\net5.0\RegistrationAppointService.RazorTargetAssemblyInfo.cache
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\obj\Debug\net5.0\RegistrationAppointService.csproj.CopyComplete
 C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\obj\Debug\net5.0\RegistrationAppointService.genruntimeconfig.cache
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Registration.exe
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\BCrypt.Net-Next.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\MailKit.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Microsoft.OData.Edm.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\MimeKit.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Registration.dll
+C:\Users\qqq\Desktop\gibdd-backend\RegistrationAppointService\bin\Debug\net5.0\Registration.pdb

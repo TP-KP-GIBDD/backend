@@ -20,7 +20,7 @@ namespace Hijacking.Controllers
 
 
         [HttpGet]
-        [Route(nameof(GetResponce))]
+        [Route("/getById/{id}")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetResponce([FromQuery] int id)
         {
@@ -28,7 +28,7 @@ namespace Hijacking.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetResponces))]
+        [Route("/getAll")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetResponces()
         {
@@ -36,23 +36,23 @@ namespace Hijacking.Controllers
         }
 
         [HttpPost]
-        [Route(nameof(Create))]
+        [Route("/create")]
         /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> Create([FromQuery] ResponceUser responceUser)
         {
             return Ok(await _responceUser.Create(responceUser));
         }
 
-        [HttpDelete]
-        [Route(nameof(Delete))]
-        /*[Authorize(Role.Admin)]*/
-        public async Task Delete([FromQuery] int id)
-        {
-            await _responceUser.Delete(id);
-        }
+        //[HttpDelete]
+        //[Route("/delete")]
+        ///*[Authorize(Role.Admin)]*/
+        //public async Task Delete([FromQuery] int id)
+        //{
+        //    await _responceUser.Delete(id);
+        //}
 
         [HttpPut]
-        [Route(nameof(Update))]
+        [Route("/update")]
         /*[Authorize(Role.Inspector)]*/
         public async Task Update([FromQuery] ResponceUser responceUser)
         {
