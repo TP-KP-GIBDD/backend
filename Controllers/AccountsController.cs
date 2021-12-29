@@ -172,27 +172,27 @@ namespace Registration.Controllers
         }
 
         [Authorize]
-        [HttpPut("{id:int}")]
+        [HttpPut("/UpdatePassport/{id:int}")]
         public ActionResult<PassportResponce> UpdatePassport(int id, PassportRequest model)
         {
-            var data = _docService.UpdatePassport(id, model);
-            return Ok(data);
+            var passport = _docService.UpdatePassport(id, model);
+            return Ok(passport);
         }
 
         [Authorize]
-        [HttpPut("{id:int}")]
+        [HttpPut("/UpdateDriverLicence/{id:int}")]
         public ActionResult<DriverLicenceResponce> UpdateDriverLicence(int id, DriverLicenceRequest model)
         {
-            var data = _docService.UpdateDriverLicence(id, model);
-            return Ok(data);
+            var driverLicence = _docService.UpdateDriverLicence(id, model);
+            return Ok(driverLicence);
         }
 
         [Authorize(Role.Admin)]
-        [HttpPut("{id:int}")]
+        [HttpPut("/UpdateIdentityCard/{id:int}")]
         public ActionResult<IdentityCardResponce> UpdateIdentityCard(int id, IdentityCardRequest model)
         {
-            var data = _docService.UpdateIdentityCard(id, model);
-            return Ok(data);
+            var identityCard = _docService.UpdateIdentityCard(id, model);
+            return Ok(identityCard);
         }
 
         private void setTokenCookie(string token)
