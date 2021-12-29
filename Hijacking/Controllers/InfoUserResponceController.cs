@@ -38,25 +38,25 @@ namespace Hijacking.Controllers
             }
 
             [HttpPost]
-            [Route(nameof(Create))]
+            [Route(nameof(CreateIUR))]
             /*[Authorize(Role.Inspector)]*/
-            public async Task<IActionResult> Create([FromQuery] InfoResponceUser responceUserInfo)
+            public async Task<IActionResult> CreateIUR([FromQuery] InfoResponceUser responceUserInfo)
             {
                 return Ok(await _responce.Create(responceUserInfo));
             }
 
             [HttpDelete]
-            [Route(nameof(Delete))]
+            [Route(nameof(DeleteIUR))]
             /*[Authorize(Role.Admin)]*/
-            public async Task Delete([FromQuery] int id)
+            public async Task DeleteIUR([FromQuery] int id)
             {
                 await _responce.Delete(id);
             }
 
             [HttpPut]
-            [Route(nameof(Update))]
+            [Route(nameof(UpdateIUR))]
             /*[Authorize(Role.Inspector)]*/
-            public async Task Update([FromQuery] InfoResponceUser responceUserInfo)
+            public async Task UpdateIUR([FromQuery] InfoResponceUser responceUserInfo)
             {
                 Ok(await _responce.Update(responceUserInfo));
             }
