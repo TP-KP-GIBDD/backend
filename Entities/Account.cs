@@ -9,10 +9,13 @@ namespace Registration.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Title { get; set; }
         public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string LastName { get; set; } 
+        public string MiddleName { get; set; }
+        public string Birthday { get; set; }
+        public string Gender { get; set; }
         public string Email { get; set; }
+        public int Phone { get; set; }
         public string PasswordHash { get; set; }
         public bool AcceptTerms { get; set; }
         public Role Role { get; set; }
@@ -24,8 +27,11 @@ namespace Registration.Entities
         public DateTime? PasswordReset { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
+
+        public int AccountId { get; set; }
+        public Data Data { get; set; }
+
         public List<RefreshToken> RefreshTokens { get; set; }
-        public List<Data> Data { get; set; }
 
         public bool OwnsToken(string token) 
         {

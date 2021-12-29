@@ -13,6 +13,7 @@ using Registration.Entities;
 using Registration.Helpers;
 using Registration.Models.Accounts;
 using Registration.Services.Abstracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Registration.Services
 {
@@ -224,7 +225,7 @@ namespace Registration.Services
             if (!string.IsNullOrEmpty(model.Password))
                 account.PasswordHash = BC.HashPassword(model.Password);
 
-            // скопируем модель в учетную запись и сохраним
+            // сопоставляем модель и учетную запись после сохраняем
             _mapper.Map(model, account);
             account.Updated = DateTime.UtcNow;
             _context.Accounts.Update(account);
@@ -240,11 +241,12 @@ namespace Registration.Services
             _context.SaveChanges();
         }
 
+
         // дополнительные методы
 
         private Account getAccount(int id)
         {
-            var account = _context.Accounts.Find(id);
+            var account = _context.Accounts.Where(a => a.Id == id).Include(a => a.Data);
             if (account == null) throw new KeyNotFoundException("Account not found");
             return account;
         }

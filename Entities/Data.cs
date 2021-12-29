@@ -13,6 +13,7 @@ namespace Registration.Entities
         [Key]
         public int Id { get; set; }
 
+        public int AccountId { get; set; }
         public Account Account { get; set; }
 
         public string Address { get; set; }
