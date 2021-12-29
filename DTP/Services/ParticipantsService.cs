@@ -9,41 +9,41 @@ namespace DTP.Services
 {
     public class ParticipantsService : IParticipantsService
     {
-        private readonly IParticipantsService _articipantsService;
+        private readonly IParticipantsService _participantsService;
 
         public async Task<Participants> Create(Participants participant)
         {
-            return await _articipantsService.Create(participant);
+            return await _participantsService.Create(participant);
         }
 
         public async Task Delete(int Id)
         {
-            await _articipantsService.Delete(Id);
+            await _participantsService.Delete(Id);
         }
 
         public async Task<IEnumerable<Participants>> GetAll()
         {
-            return await _articipantsService.GetAll();
+            return await _participantsService.GetAll();
         }
 
         public async Task<Participants> GetByFullName(string fullname)
         {
-            return await _articipantsService.GetByFullName(fullname);
+            return await _participantsService.GetByFullName(fullname);
         }
 
         public async Task<IEnumerable<Participants>> GetParticipantById(int Id)
         {
-            return await _articipantsService.GetParticipantById(Id);
+            return await _participantsService.GetParticipantById(Id);
         }
 
         public async Task<IEnumerable<Participants>> GetParticipantByAvtoId(int Id)
         {
-            return await _articipantsService.GetParticipantByAvtoId(Id);
+            return await _participantsService.GetParticipantByAvtoId(Id);
         }
 
         public async Task<Participants> Update(Participants participant)
         {
-            return await _articipantsService.Update(participant);
+            return await _participantsService.Update(participant);
         }
     }
 }

@@ -19,49 +19,49 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route (nameof(GetParticipant))]
+        [Route ("/GetParticipant/{id:int}")]
         public async Task<IActionResult> GetParticipant([FromQuery] int Id)
         {
             return Ok(await _participantsService.GetParticipantById(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetByFullName))]
+        [Route("/GetByFullName/{id:int}")]
         public async Task<IActionResult> GetByFullName([FromQuery] string fullName)
         {
             return Ok(await _participantsService.GetByFullName(fullName));
         }
 
         [HttpGet]
-        [Route(nameof(GetAvto))]
+        [Route("/GetAvto/{id:int}")]
         public async Task<IActionResult> GetAvto([FromQuery] int Id)
         {
             return Ok(await _participantsService.GetParticipantByAvtoId(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetParticipants))]
+        [Route("/GetParticipants/{id:int}")]
         public async Task<IActionResult> GetParticipants()
         {
             return Ok(await _participantsService.GetAll());
         }
 
         [HttpPost]
-        [Route(nameof(CreateParticipant))]
+        [Route("/CreateParticipant/{id:int}")]
         public async Task<IActionResult> CreateParticipant([FromQuery] Participants patricipant)
         {
             return Ok(await _participantsService.Create(patricipant));
         }
 
         [HttpDelete]
-        [Route(nameof(DeleteParticipant))]
+        [Route("/DeleteParticipant/{id:int}")]
         public async Task DeleteParticipant([FromQuery] int id)
         {
             await _participantsService.Delete(id);
         }
 
         [HttpPut]
-        [Route(nameof(UpdateParticipant))]
+        [Route("/UpdateParticipant/{id:int}")]
         public async Task UpdateParticipant([FromQuery] Participants participant)
         {
             Ok(await _participantsService.Update(participant));

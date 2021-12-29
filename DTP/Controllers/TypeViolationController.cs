@@ -18,21 +18,21 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetTypeViolation))]
+        [Route("/GetTypeViolation/{id:int}")]
         public async Task<IActionResult> GetTypeViolation([FromQuery] int Id)
         {
             return Ok(await _typeViolationService.GetProtocolById(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetByName))]
+        [Route("/GetByName/{id:int}")]
         public async Task<IActionResult> GetByName([FromQuery] string name)
         {
             return Ok(await _typeViolationService.GetByName(name));
         }
 
         [HttpGet]
-        [Route(nameof(GetTypesViolation))]
+        [Route("/GetTypesViolation/{id:int}")]
         public async Task<IActionResult> GetTypesViolation()
         {
             return Ok(await _typeViolationService.GetAll());

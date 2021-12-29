@@ -19,42 +19,42 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetProtocol))]
+        [Route("/GetProtocol/{id:int}")]
         public async Task<IActionResult> GetProtocol([FromQuery] int Id)
         {
             return Ok(await _protocolService.GetProtocolById(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetByAddress))]
+        [Route("/GetByAddress/{id:int}")]
         public async Task<IActionResult> GetByAddress([FromQuery] string adress)
         {
             return Ok(await _protocolService.GetByAddress(adress));
         }
 
         [HttpGet]
-        [Route(nameof(GetProtocols))]
+        [Route("/GetProtocols/{id:int}")]
         public async Task<IActionResult> GetProtocols()
         {
             return Ok(await _protocolService.GetAll());
         }
 
         [HttpPost]
-        [Route(nameof(CreateProtocol))]
+        [Route("/CreateProtocol/{id:int}")]
         public async Task<IActionResult> CreateProtocol([FromQuery] Protocol protocol)
         {
             return Ok(await _protocolService.Create(protocol));
         }
 
         [HttpDelete]
-        [Route(nameof(DeleteProtocol))]
+        [Route("/DeleteProtocol/{id:int}")]
         public async Task DeleteProtocol([FromQuery] int id)
         {
             await _protocolService.Delete(id);
         }
 
         [HttpPut]
-        [Route(nameof(UpdateProtocol))]
+        [Route("/UpdateProtocol/{id:int}")]
         public async Task UpdateProtocol([FromQuery] Protocol protocol)
         {
             Ok(await _protocolService.Update(protocol));

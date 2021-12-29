@@ -19,35 +19,35 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetCoordinates))]
+        [Route("/GetCoordinates/{id:int}")]
         public async Task<IActionResult> GetCoordinates([FromQuery] int Id)
         {
             return Ok(await _coordinatesService.GetProtocolById(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetAllCoordinates))]
+        [Route("/GetAllCoordinates/{id:int}")]
         public async Task<IActionResult> GetAllCoordinates()
         {
             return Ok(await _coordinatesService.GetAll());
         }
 
         [HttpPost]
-        [Route(nameof(CreateCoordinates))]
+        [Route("/CreateCoordinates/{id:int}")]
         public async Task<IActionResult> CreateCoordinates([FromQuery] Coordinates coordinates)
         {
             return Ok(await _coordinatesService.Create(coordinates));
         }
 
         [HttpDelete]
-        [Route(nameof(DeleteCoordinates))]
+        [Route("/DeleteCoordinates/{id:int}")]
         public async Task DeleteCoordinates([FromQuery] int id)
         {
             await _coordinatesService.Delete(id);
         }
 
         [HttpPut]
-        [Route(nameof(UpdateCoordinates))]
+        [Route("/UpdateCoordinates/{id:int}")]
         public async Task UpdateCoordinates([FromQuery] Coordinates coordinates)
         {
             Ok(await _coordinatesService.Update(coordinates));
