@@ -31,9 +31,14 @@ namespace DTP.Services
             return await _articipantsService.GetByFullName(fullname);
         }
 
-        public async Task<Participants> GetParticipantById(int Id)
+        public async Task<IEnumerable<Participants>> GetParticipantById(int Id)
         {
             return await _articipantsService.GetParticipantById(Id);
+        }
+
+        public async Task<IEnumerable<Participants>> GetParticipantByAvtoId(int Id)
+        {
+            return await _articipantsService.GetParticipantByAvtoId(Id);
         }
 
         public async Task<Participants> Update(Participants participant)

@@ -33,6 +33,13 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
+        [Route(nameof(GetAvto))]
+        public async Task<IActionResult> GetAvto([FromQuery] int Id)
+        {
+            return Ok(await _participantsService.GetParticipantByAvtoId(Id));
+        }
+
+        [HttpGet]
         [Route(nameof(GetParticipants))]
         public async Task<IActionResult> GetParticipants()
         {

@@ -7322,11 +7322,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\studing\\C#\\DTP\\DTP\\DTP.csproj",
+      "projectUniqueName": "D:\\studing\\C#\\Hijacking\\DTP\\DTP.csproj",
       "projectName": "DTP",
-      "projectPath": "D:\\studing\\C#\\DTP\\DTP\\DTP.csproj",
+      "projectPath": "D:\\studing\\C#\\Hijacking\\DTP\\DTP.csproj",
       "packagesPath": "C:\\Users\\serge\\.nuget\\packages\\",
-      "outputPath": "D:\\studing\\C#\\DTP\\DTP\\obj\\",
+      "outputPath": "D:\\studing\\C#\\Hijacking\\DTP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\serge\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -9,7 +9,8 @@ namespace DTP.Services.Abstracts
     public interface IParticipantsService
     {
         Task<IEnumerable<Participants>> GetAll();
-        Task<Participants> GetParticipantById(int Id);
+        Task<IEnumerable<Participants>> GetParticipantById(int Id);
+        Task<IEnumerable<Participants>> GetParticipantByAvtoId(int Id);
         Task<Participants> GetByFullName(string fullname);
         Task<Participants> Create(Participants participant);
         Task<Participants> Update(Participants participant);
