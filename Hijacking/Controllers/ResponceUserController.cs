@@ -36,13 +36,18 @@ namespace Hijacking.Controllers
         }
 
         [HttpPost]
+<<<<<<< HEAD
         [Route("/create")]
+=======
+        [Route(nameof(CreateRU))]
+>>>>>>> e67ce4c3a8e4851e763c26c9bf686fcef3ab566e
         /*[Authorize(Role.Inspector)]*/
-        public async Task<IActionResult> Create([FromQuery] ResponceUser responceUser)
+        public async Task<IActionResult> CreateRU([FromQuery] ResponceUser responceUser)
         {
             return Ok(await _responceUser.Create(responceUser));
         }
 
+<<<<<<< HEAD
         //[HttpDelete]
         //[Route("/delete")]
         ///*[Authorize(Role.Admin)]*/
@@ -53,8 +58,20 @@ namespace Hijacking.Controllers
 
         [HttpPut]
         [Route("/update")]
+=======
+        [HttpDelete]
+        [Route(nameof(DeleteRU))]
+        /*[Authorize(Role.Admin)]*/
+        public async Task DeleteRU([FromQuery] int id)
+        {
+            await _responceUser.Delete(id);
+        }
+
+        [HttpPut]
+        [Route(nameof(UpdateRU))]
+>>>>>>> e67ce4c3a8e4851e763c26c9bf686fcef3ab566e
         /*[Authorize(Role.Inspector)]*/
-        public async Task Update([FromQuery] ResponceUser responceUser)
+        public async Task UpdateRU([FromQuery] ResponceUser responceUser)
         {
             Ok(await _responceUser.Update(responceUser));
         }

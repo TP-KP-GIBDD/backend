@@ -19,35 +19,35 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route(nameof(GetPlaceViolation))]
+        [Route("/GetPlaceViolation/{id:int}")]
         public async Task<IActionResult> GetPlaceViolation([FromQuery] int Id)
         {
             return Ok(await _placeViolationService.GetPlaceViolationById(Id));
         }
 
         [HttpGet]
-        [Route(nameof(GetPlaceViolations))]
+        [Route("/GetPlaceViolations/{id:int}")]
         public async Task<IActionResult> GetPlaceViolations()
         {
             return Ok(await _placeViolationService.GetAll());
         }
 
         [HttpPost]
-        [Route(nameof(CreatePlaceViolation))]
+        [Route("/CreatePlaceViolation/{id:int}")]
         public async Task<IActionResult> CreatePlaceViolation([FromQuery] PlaceViolation place)
         {
             return Ok(await _placeViolationService.Create(place));
         }
 
         [HttpDelete]
-        [Route(nameof(DeleteParticipant))]
-        public async Task DeleteParticipant([FromQuery] int id)
+        [Route("/DeletePlaceViolation/{id:int}")]
+        public async Task DeletePlaceViolation([FromQuery] int id)
         {
             await _placeViolationService.Delete(id);
         }
 
         [HttpPut]
-        [Route(nameof(UpdatePlaceViolation))]
+        [Route("/UpdatePlaceViolation/{id:int}")]
         public async Task UpdatePlaceViolation([FromQuery] PlaceViolation place)
         {
             Ok(await _placeViolationService.Update(place));

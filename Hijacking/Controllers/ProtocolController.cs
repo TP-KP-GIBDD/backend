@@ -36,25 +36,37 @@ namespace Hijacking.Controllers
         }
 
         [HttpPost]
+<<<<<<< HEAD
         [Route("/create")]
+=======
+        [Route(nameof(CreateProtocol))]
+>>>>>>> e67ce4c3a8e4851e763c26c9bf686fcef3ab566e
         /*[Authorize(Role.Inspector)]*/
-        public async Task<IActionResult> Create([FromQuery] Protocol protocol)
+        public async Task<IActionResult> CreateProtocol([FromQuery] Protocol protocol)
         {
             return Ok(await _protocolService.Create(protocol));
         }
 
         [HttpDelete]
+<<<<<<< HEAD
         [Route("/delete")]
+=======
+        [Route(nameof(DeleteProtocol))]
+>>>>>>> e67ce4c3a8e4851e763c26c9bf686fcef3ab566e
         /*[Authorize(Role.Admin)]*/
-        public async Task Delete([FromQuery] int id)
+        public async Task DeleteProtocol([FromQuery] int id)
         {
             await _protocolService.Delete(id);
         }
 
         [HttpPut]
+<<<<<<< HEAD
         [Route("/update")]
+=======
+        [Route(nameof(UpdateProtocol))]
+>>>>>>> e67ce4c3a8e4851e763c26c9bf686fcef3ab566e
         /*[Authorize(Role.Inspector)]*/
-        public async Task Update([FromQuery] Protocol protocol)
+        public async Task UpdateProtocol([FromQuery] Protocol protocol)
         {
             Ok(await _protocolService.Update(protocol));
         }
