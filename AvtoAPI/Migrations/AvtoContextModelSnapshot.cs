@@ -42,6 +42,10 @@ namespace AvtoAPI.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("model");
 
+                    b.Property<int>("NumberAvto")
+                        .HasColumnType("int")
+                        .HasColumnName("number_avto");
+
                     b.Property<int>("Power")
                         .HasColumnType("int")
                         .HasColumnName("power");
@@ -49,6 +53,10 @@ namespace AvtoAPI.Migrations
                     b.Property<int>("RudderId")
                         .HasColumnType("int")
                         .HasColumnName("rudder_id");
+
+                    b.Property<string>("Vin")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("vin");
 
                     b.Property<int>("Year")
                         .HasColumnType("int")
@@ -98,44 +106,7 @@ namespace AvtoAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AvtoId");
-
                     b.ToTable("car_owner");
-                });
-
-            modelBuilder.Entity("AvtoAPI.Entities.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AvtoId")
-                        .HasColumnType("int")
-                        .HasColumnName("AvtoId");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("name");
-
-                    b.Property<int>("NumberLicense")
-                        .HasColumnType("int")
-                        .HasColumnName("numberlicense");
-
-                    b.Property<int>("NumberPasport")
-                        .HasColumnType("int")
-                        .HasColumnName("numberpasport");
-
-                    b.Property<string>("Surname")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("surname");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AvtoId");
-
-                    b.ToTable("person");
                 });
 
             modelBuilder.Entity("AvtoAPI.Entities.Rudder", b =>
@@ -172,28 +143,6 @@ namespace AvtoAPI.Migrations
                     b.Navigation("BodyType");
 
                     b.Navigation("Rudder");
-                });
-
-            modelBuilder.Entity("AvtoAPI.Entities.CarOwner", b =>
-                {
-                    b.HasOne("AvtoAPI.Entities.Avto", "Avto")
-                        .WithMany()
-                        .HasForeignKey("AvtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Avto");
-                });
-
-            modelBuilder.Entity("AvtoAPI.Entities.Person", b =>
-                {
-                    b.HasOne("AvtoAPI.Entities.Avto", "Avto")
-                        .WithMany()
-                        .HasForeignKey("AvtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Avto");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source\\AvtoAPI\\AvtoAPI.csproj": {}
+    "C:\\Users\\qqq\\Desktop\\gibdd-backend\\AvtoAPI\\AvtoAPI.csproj": {}
   },
   "projects": {
-    "C:\\source\\AvtoAPI\\AvtoAPI.csproj": {
+    "C:\\Users\\qqq\\Desktop\\gibdd-backend\\AvtoAPI\\AvtoAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source\\AvtoAPI\\AvtoAPI.csproj",
+        "projectUniqueName": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\AvtoAPI\\AvtoAPI.csproj",
         "projectName": "AvtoAPI",
-        "projectPath": "C:\\source\\AvtoAPI\\AvtoAPI.csproj",
-        "packagesPath": "C:\\Users\\Dmitry Gorbulko\\.nuget\\packages\\",
-        "outputPath": "C:\\source\\AvtoAPI\\obj\\",
+        "projectPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\AvtoAPI\\AvtoAPI.csproj",
+        "packagesPath": "C:\\Users\\qqq\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\AvtoAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Dmitry Gorbulko\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\qqq\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -85,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

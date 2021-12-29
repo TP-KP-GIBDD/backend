@@ -26,6 +26,7 @@ namespace RegistrationAppointService.Services.Implimentation
                     .ThenInclude(s => s.Documents)
                 .Include(rs => rs.ServiceDateTime)
                 .ToList();
+
         }
         
         public IEnumerable<RegistrationService> GetRegAppointsByCarOwnerId(int id)
@@ -39,7 +40,7 @@ namespace RegistrationAppointService.Services.Implimentation
                 .Include(rs => rs.ServiceDateTime);
         }
 
-        public IEnumerable<RegistrationService> GetRegAppointById(int id)
+        public RegistrationService GetRegAppointById(int id)
         {
             return context.RegistrationServices
                 .Where(rs => rs.Id == id)
@@ -47,7 +48,8 @@ namespace RegistrationAppointService.Services.Implimentation
                     .ThenInclude(g => g.Region)
                 .Include(rs => rs.Service)
                     .ThenInclude(s => s.Documents)
-                .Include(rs => rs.ServiceDateTime);
+                .Include(rs => rs.ServiceDateTime)
+                .FirstOrDefault();
         }
 
         public bool SaveRegistrationService(RegServiceInfo regService)
@@ -79,6 +81,7 @@ namespace RegistrationAppointService.Services.Implimentation
             if (service != null)
             {
                 service.Status = status;
+                context.SaveChanges();
                 return true;
             }
 
