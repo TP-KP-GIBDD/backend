@@ -1,0 +1,7 @@
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.csproj.AssemblyReference.cache
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.GeneratedMSBuildEditorConfig.editorconfig
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.AssemblyInfoInputs.cache
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.AssemblyInfo.cs
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.csproj.CoreCompileInputs.cache
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.MvcApplicationPartsAssemblyInfo.cs
+D:\studing\C#\Hijacking\Hijacking\obj\Debug\net5.0\Hijacking.MvcApplicationPartsAssemblyInfo.cache
