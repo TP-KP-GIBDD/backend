@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Fine\\FineAPI.csproj": {}
+    "D:\\studing\\C#\\KP\\backend\\Fine\\FineAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Fine\\FineAPI.csproj": {
+    "D:\\studing\\C#\\KP\\backend\\Fine\\FineAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Fine\\FineAPI.csproj",
+        "projectUniqueName": "D:\\studing\\C#\\KP\\backend\\Fine\\FineAPI.csproj",
         "projectName": "FineAPI",
-        "projectPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Fine\\FineAPI.csproj",
-        "packagesPath": "C:\\Users\\qqq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\qqq\\Desktop\\gibdd-backend\\Fine\\obj\\",
+        "projectPath": "D:\\studing\\C#\\KP\\backend\\Fine\\FineAPI.csproj",
+        "packagesPath": "C:\\Users\\serge\\.nuget\\packages\\",
+        "outputPath": "D:\\studing\\C#\\KP\\backend\\Fine\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\qqq\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\serge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -85,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
         }
       }
     }

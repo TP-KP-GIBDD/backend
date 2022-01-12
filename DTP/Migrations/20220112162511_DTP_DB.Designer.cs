@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DTP.Migrations
 {
     [DbContext(typeof(ProtocolContext))]
-    [Migration("20211226213846_DTP_DB")]
+    [Migration("20220112162511_DTP_DB")]
     partial class DTP_DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,17 +33,13 @@ namespace DTP.Migrations
                         .HasColumnType("int")
                         .HasColumnName("body_type_id");
 
-                    b.Property<string>("Brand")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("brand");
+                    b.Property<int>("BrandModelId")
+                        .HasColumnType("int")
+                        .HasColumnName("brand_model_id");
 
-                    b.Property<string>("Color")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("color");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("model");
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int")
+                        .HasColumnName("color_id");
 
                     b.Property<int>("NumberAvto")
                         .HasColumnType("int")
@@ -69,6 +65,10 @@ namespace DTP.Migrations
 
                     b.HasIndex("BodyTypeId");
 
+                    b.HasIndex("BrandModelId");
+
+                    b.HasIndex("ColorId");
+
                     b.HasIndex("RudderId");
 
                     b.ToTable("avto");
@@ -89,6 +89,63 @@ namespace DTP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("body_type");
+                });
+
+            modelBuilder.Entity("AvtoAPI.Entities.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("brand");
+                });
+
+            modelBuilder.Entity("AvtoAPI.Entities.BrandModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int")
+                        .HasColumnName("BrandId");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("brand_model");
+                });
+
+            modelBuilder.Entity("AvtoAPI.Entities.ColorAvto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("color");
                 });
 
             modelBuilder.Entity("AvtoAPI.Entities.Rudder", b =>
@@ -239,6 +296,10 @@ namespace DTP.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("dateTime");
 
+                    b.Property<int>("identifier")
+                        .HasColumnType("int")
+                        .HasColumnName("identifier");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ParticipantsId");
@@ -265,6 +326,38 @@ namespace DTP.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TypeViolations");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "столкновение транспортных средств"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "наезд на припятствие"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "опрокидывание/съезд в кювет"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "наезд на пешехода"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "наезд на животное"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "другое"
+                        });
                 });
 
             modelBuilder.Entity("AvtoAPI.Entities.Avto", b =>
@@ -272,6 +365,18 @@ namespace DTP.Migrations
                     b.HasOne("AvtoAPI.Entities.BodyType", "BodyType")
                         .WithMany()
                         .HasForeignKey("BodyTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AvtoAPI.Entities.BrandModel", "BrandModel")
+                        .WithMany()
+                        .HasForeignKey("BrandModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AvtoAPI.Entities.ColorAvto", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -283,7 +388,22 @@ namespace DTP.Migrations
 
                     b.Navigation("BodyType");
 
+                    b.Navigation("BrandModel");
+
+                    b.Navigation("Color");
+
                     b.Navigation("Rudder");
+                });
+
+            modelBuilder.Entity("AvtoAPI.Entities.BrandModel", b =>
+                {
+                    b.HasOne("AvtoAPI.Entities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
                 });
 
             modelBuilder.Entity("DTP.Entities.Participants", b =>

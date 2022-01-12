@@ -21,6 +21,32 @@ namespace DTP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "brand",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_brand", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "color",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_color", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Coordinates",
                 columns: table => new
                 {
@@ -61,6 +87,26 @@ namespace DTP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "brand_model",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BrandId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_brand_model", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_brand_model_brand_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "brand",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PlaceViolation",
                 columns: table => new
                 {
@@ -91,11 +137,10 @@ namespace DTP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     number_avto = table.Column<int>(type: "int", nullable: false),
                     vin = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    brand = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    model = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    brand_model_id = table.Column<int>(type: "int", nullable: false),
                     year = table.Column<int>(type: "int", nullable: false),
                     power = table.Column<int>(type: "int", nullable: false),
-                    color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    color_id = table.Column<int>(type: "int", nullable: false),
                     body_type_id = table.Column<int>(type: "int", nullable: false),
                     rudder_id = table.Column<int>(type: "int", nullable: false)
                 },
@@ -106,6 +151,18 @@ namespace DTP.Migrations
                         name: "FK_avto_body_type_body_type_id",
                         column: x => x.body_type_id,
                         principalTable: "body_type",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_avto_brand_model_brand_model_id",
+                        column: x => x.brand_model_id,
+                        principalTable: "brand_model",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_avto_color_color_id",
+                        column: x => x.color_id,
+                        principalTable: "color",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -145,6 +202,7 @@ namespace DTP.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    identifier = table.Column<int>(type: "int", nullable: false),
                     address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     dateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     inspector = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -177,15 +235,43 @@ namespace DTP.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "TypeViolations",
+                columns: new[] { "Id", "name" },
+                values: new object[,]
+                {
+                    { 1, "столкновение транспортных средств" },
+                    { 2, "наезд на припятствие" },
+                    { 3, "опрокидывание/съезд в кювет" },
+                    { 4, "наезд на пешехода" },
+                    { 5, "наезд на животное" },
+                    { 6, "другое" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_avto_body_type_id",
                 table: "avto",
                 column: "body_type_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_avto_brand_model_id",
+                table: "avto",
+                column: "brand_model_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_avto_color_id",
+                table: "avto",
+                column: "color_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_avto_rudder_id",
                 table: "avto",
                 column: "rudder_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_brand_model_BrandId",
+                table: "brand_model",
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Participants_avtoId",
@@ -237,7 +323,16 @@ namespace DTP.Migrations
                 name: "body_type");
 
             migrationBuilder.DropTable(
+                name: "brand_model");
+
+            migrationBuilder.DropTable(
+                name: "color");
+
+            migrationBuilder.DropTable(
                 name: "rudder");
+
+            migrationBuilder.DropTable(
+                name: "brand");
         }
     }
 }

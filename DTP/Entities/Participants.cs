@@ -1,4 +1,5 @@
-﻿using AvtoAPI.Entities;
+﻿using AvtoAPI;
+using AvtoAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,21 +15,21 @@ namespace DTP.Entities
         [Column("Id")]
         public int Id { get; set; }
 
-        [Column("fullname")]
+        [Column("fullname")] //полное имя
         public string FullName { get; set; }
 
-        [Column("status")]
+        [Column("status")] //статус участник либо виновник
         public string Status { get; set; }
 
-        [Column("login")] 
+        [Column("login")] // логин пользователя
         public string Login { get; set; }
 
-        [Column("avtoId")]
+        [Column("avtoId")] // данные автомобиля
         [ForeignKey(nameof(Avto))]
         public int AvtoId { get; set; }
         public virtual Avto Avto { get; set; }
 
-        [Column ("damage")]
+        [Column ("damage")] //описание повреждений
         public string Damage { get; set; }
     }
 }

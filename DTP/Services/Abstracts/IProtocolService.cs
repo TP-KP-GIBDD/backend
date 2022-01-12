@@ -10,7 +10,9 @@ namespace DTP.Services.Abstracts
     {
         Task<IEnumerable<Protocol>> GetAll();
         Task<Protocol> GetProtocolById(int Id);
-        Task<Protocol> GetByAddress(string address);
+        Task<Protocol> GetProtocolByIdentifier(int identifier);
+        Task<Protocol> GetProtocolByInspector(string inspector);
+        Task<Protocol> GetProtocolByTypeViolation(int typeviolation);
         Task<Protocol> Create(Protocol protocol);
         Task<Protocol> Update(Protocol protocol);
         Task Delete(int Id);

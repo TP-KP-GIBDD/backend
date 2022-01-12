@@ -12,9 +12,11 @@ namespace DTP.Entities
         [Key]
         [Column ("Id")]
         public int Id { get; set; }
-        [Column ("Latitude")]
+
+        [Column ("Latitude")] // широта
         public int Latitube { get; set; }
-        [Column ("Longitube")]
+
+        [Column ("Longitube")] // долгота
         public int Longitube { get; set; }
     }
 }
