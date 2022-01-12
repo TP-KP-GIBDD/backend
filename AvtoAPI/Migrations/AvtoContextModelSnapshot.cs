@@ -38,9 +38,14 @@ namespace AvtoAPI.Migrations
                         .HasColumnType("int")
                         .HasColumnName("color_id");
 
-                    b.Property<int>("NumberAvto")
-                        .HasColumnType("int")
+                    b.Property<string>("NumberAvto")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
                         .HasColumnName("number_avto");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int")
+                        .HasColumnName("person_id");
 
                     b.Property<int>("Power")
                         .HasColumnType("int")
@@ -51,6 +56,7 @@ namespace AvtoAPI.Migrations
                         .HasColumnName("rudder_id");
 
                     b.Property<string>("Vin")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("vin");
 
@@ -77,7 +83,8 @@ namespace AvtoAPI.Migrations
                             BodyTypeId = 1,
                             BrandModelId = 1,
                             ColorId = 1,
-                            NumberAvto = 1,
+                            NumberAvto = "1",
+                            PersonId = 1,
                             Power = 111,
                             RudderId = 1,
                             Vin = "1111111111",
@@ -89,7 +96,8 @@ namespace AvtoAPI.Migrations
                             BodyTypeId = 2,
                             BrandModelId = 2,
                             ColorId = 2,
-                            NumberAvto = 2,
+                            NumberAvto = "2",
+                            PersonId = 1,
                             Power = 222,
                             RudderId = 2,
                             Vin = "2211111111",
@@ -101,7 +109,8 @@ namespace AvtoAPI.Migrations
                             BodyTypeId = 3,
                             BrandModelId = 3,
                             ColorId = 3,
-                            NumberAvto = 3,
+                            NumberAvto = "3",
+                            PersonId = 2,
                             Power = 333,
                             RudderId = 1,
                             Vin = "3311111111",

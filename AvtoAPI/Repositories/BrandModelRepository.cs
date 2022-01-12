@@ -1,5 +1,6 @@
 ﻿using AvtoAPI.Entities;
 using AvtoAPI.Repositories.Abstracts;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,9 @@ namespace AvtoAPI.Repositories
     {
         public BrandModelRepository(AvtoContext context) : base(context)
         { }
+        public virtual async Task<IEnumerable<BrandModel>> GetBrandModelByBrandId(int id)
+        {
+            return await _context.Set<BrandModel>().Where(x => x.BrandId == id).ToListAsync();
+        }
     }
 }

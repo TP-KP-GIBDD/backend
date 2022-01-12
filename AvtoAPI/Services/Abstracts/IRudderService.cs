@@ -1,5 +1,4 @@
 ﻿using AvtoAPI.Entities;
-using AvtoAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

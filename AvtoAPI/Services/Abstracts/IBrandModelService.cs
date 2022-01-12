@@ -13,5 +13,6 @@ namespace AvtoAPI.Services.Abstracts
         Task<BrandModel> Create(BrandModel brandModel);
         Task<BrandModel> UpdateBrandModel(BrandModel brandModel);
         Task DeleteBrandModel(int id);
+        Task<IEnumerable<BrandModel>> GetBrandModelByBrandId(int id);
     }
 }

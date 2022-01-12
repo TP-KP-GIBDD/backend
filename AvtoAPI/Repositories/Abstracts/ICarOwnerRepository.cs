@@ -8,6 +8,6 @@ namespace AvtoAPI.Repositories
 {
     public interface ICarOwnerRepository : IRepositoryBase<CarOwner>
     {
-
+        Task<IEnumerable<CarOwner>> GetCarOwnerByAvtoId(int id);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AvtoAPI.Entities;
-using AvtoAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +13,6 @@ namespace AvtoAPI.Services.Abstracts
         Task<CarOwner> Create(CarOwner carOwner);
         Task<CarOwner> UpdateCarOwner(CarOwner carOwner);
         Task DeleteCarOwner(int id);
+        Task<IEnumerable<CarOwner>> GetCarOwnerByAvtoId(int id);
     }
 }

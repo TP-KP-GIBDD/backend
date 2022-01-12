@@ -22,7 +22,7 @@ namespace FineAPI.Controllers
 
         [HttpGet]
         [Route(nameof(GetTypeFine))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetTypeFine([FromQuery] int id)
         {
             return Ok(await _typeFineService.GetTypeFineById(id));
@@ -30,7 +30,7 @@ namespace FineAPI.Controllers
 
         [HttpGet]
         [Route(nameof(GetTypeFines))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> GetTypeFines()
         {
             return Ok(await _typeFineService.GetTypeFines());
@@ -38,7 +38,7 @@ namespace FineAPI.Controllers
 
         [HttpPost]
         [Route(nameof(CreateTypeFine))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> CreateTypeFine([FromQuery] TypeFine fine)
         {
             return Ok(await _typeFineService.CreateTypeFine(fine));
@@ -46,7 +46,7 @@ namespace FineAPI.Controllers
 
         [HttpDelete]
         [Route(nameof(DeleteTypeFine))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task DeleteTypeFine([FromQuery] int id)
         {
             await _typeFineService.DeleteTypeFine(id);
@@ -54,7 +54,7 @@ namespace FineAPI.Controllers
 
         [HttpPut]
         [Route(nameof(UpdateTypeFine))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task UpdateTypeFine([FromQuery] TypeFine fine)
         {
             Ok(await _typeFineService.UpdateTypeFine(fine));

@@ -1,5 +1,4 @@
 ﻿using AvtoAPI.Entities;
-using AvtoAPI.Models;
 using AvtoAPI.Repositories;
 using AvtoAPI.Services.Abstracts;
 using System;
@@ -12,15 +11,23 @@ namespace AvtoAPI.Services
     public class AvtoService : IAvtoService
     {
         private readonly IAvtoRepository _avtoRepository;
+        private readonly ICarOwnerRepository _carOwnerRepository;
 
-        public AvtoService(IAvtoRepository avtoRepository)
+        public AvtoService(IAvtoRepository avtoRepository, ICarOwnerRepository carOwnerRepository)
         {
             _avtoRepository = avtoRepository;
+            _carOwnerRepository = carOwnerRepository;
         }
 
         public async Task<Avto> Create(Avto avto)
         {
-            return await _avtoRepository.Create(avto);
+            CarOwner carOwner = new CarOwner();
+            
+            await _avtoRepository.Create(avto);
+            carOwner.AvtoId = avto.Id;
+            carOwner.PersonId = avto.PersonId;
+            await _carOwnerRepository.Create(carOwner);
+            return avto;
         }
 
         public async Task DeleteAvto(int id)

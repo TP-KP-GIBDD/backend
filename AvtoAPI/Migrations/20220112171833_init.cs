@@ -84,8 +84,9 @@ namespace AvtoAPI.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    number_avto = table.Column<int>(type: "int", nullable: false),
-                    vin = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    number_avto = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    vin = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    person_id = table.Column<int>(type: "int", nullable: false),
                     brand_model_id = table.Column<int>(type: "int", nullable: false),
                     year = table.Column<int>(type: "int", nullable: false),
                     power = table.Column<int>(type: "int", nullable: false),
@@ -198,18 +199,18 @@ namespace AvtoAPI.Migrations
 
             migrationBuilder.InsertData(
                 table: "avto",
-                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "power", "rudder_id", "vin", "year" },
-                values: new object[] { 1, 1, 1, 1, 1, 111, 1, "1111111111", 2001 });
+                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "person_id", "power", "rudder_id", "vin", "year" },
+                values: new object[] { 1, 1, 1, 1, "1", 1, 111, 1, "1111111111", 2001 });
 
             migrationBuilder.InsertData(
                 table: "avto",
-                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "power", "rudder_id", "vin", "year" },
-                values: new object[] { 2, 2, 2, 2, 2, 222, 2, "2211111111", 2002 });
+                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "person_id", "power", "rudder_id", "vin", "year" },
+                values: new object[] { 2, 2, 2, 2, "2", 1, 222, 2, "2211111111", 2002 });
 
             migrationBuilder.InsertData(
                 table: "avto",
-                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "power", "rudder_id", "vin", "year" },
-                values: new object[] { 3, 3, 3, 3, 3, 333, 1, "3311111111", 2003 });
+                columns: new[] { "id", "body_type_id", "brand_model_id", "color_id", "number_avto", "person_id", "power", "rudder_id", "vin", "year" },
+                values: new object[] { 3, 3, 3, 3, "3", 2, 333, 1, "3311111111", 2003 });
 
             migrationBuilder.InsertData(
                 table: "car_owner",

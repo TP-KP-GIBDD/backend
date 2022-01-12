@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AvtoAPI.Models;
 using AvtoAPI.Entities;
 
 namespace AvtoAPI.Entities
@@ -42,13 +41,13 @@ namespace AvtoAPI.Entities
                     new BrandModel{ Id=2,Name = "m5", BrandId = 2},
                     new BrandModel{ Id=3,Name="k5", BrandId = 3}
                 });
-             builder.Entity<ColorAvto>().HasData(
-                 new ColorAvto[]
-                 {
+            builder.Entity<ColorAvto>().HasData(
+                new ColorAvto[]
+                {
                     new ColorAvto{ Id=1,Name = "Синий"},
                     new ColorAvto{ Id=2,Name = "Красный"},
                     new ColorAvto{ Id=3,Name="Белый"}
-                 });
+                });
             builder.Entity<Rudder>().HasData(
                 new Rudder[]
                 {
@@ -68,14 +67,14 @@ namespace AvtoAPI.Entities
                     new CarOwner{ Id=1,PersonId = 1, AvtoId = 1},
                     new CarOwner{ Id=2,PersonId = 2, AvtoId = 2},
                     new CarOwner{ Id=3,PersonId = 3, AvtoId = 3}
-                }); 
+                });
             builder.Entity<Avto>().HasData(
             new Avto[]
             {
-                new Avto{ Id=1,BodyTypeId = 1, BrandModelId = 1, ColorId = 1, RudderId = 1, NumberAvto = 1, Year = 2001, Vin = "1111111111", Power = 111},
-                new Avto{ Id=2,BodyTypeId = 2, BrandModelId = 2, ColorId = 2, RudderId = 2, NumberAvto = 2, Year = 2002, Vin = "2211111111", Power = 222},
-                new Avto{ Id=3,BodyTypeId = 3, BrandModelId = 3, ColorId = 3, RudderId = 1, NumberAvto = 3, Year = 2003, Vin = "3311111111", Power = 333}
+                new Avto{ Id=1,BodyTypeId = 1, BrandModelId = 1, ColorId = 1, RudderId = 1, NumberAvto = "1", Year = 2001, Vin = "1111111111", Power = 111, PersonId = 1},
+                new Avto{ Id=2,BodyTypeId = 2, BrandModelId = 2, ColorId = 2, RudderId = 2, NumberAvto = "2", Year = 2002, Vin = "2211111111", Power = 222, PersonId = 1},
+                new Avto{ Id=3,BodyTypeId = 3, BrandModelId = 3, ColorId = 3, RudderId = 1, NumberAvto = "3", Year = 2003, Vin = "3311111111", Power = 333, PersonId = 2}
             });
-    }
+        }
     }
 }

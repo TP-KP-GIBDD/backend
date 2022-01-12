@@ -43,7 +43,7 @@ namespace FineAPI.Controllers
         [HttpPost]
         [Route(nameof(CreateFine))]
         [ProducesResponseType(typeof(Fine), StatusCodes.Status200OK)]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task<IActionResult> CreateFine([FromQuery] Fine fine)
         {
             return Ok(await _fineService.CreateFine(fine));
@@ -59,10 +59,24 @@ namespace FineAPI.Controllers
         [HttpPut]
         [Route(nameof(UpdateFine))]
         [ProducesResponseType(typeof(Fine), StatusCodes.Status200OK)]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task UpdateFine([FromQuery] Fine fine)
         {
             Ok(await _fineService.UpdateFine(fine));
+        }
+
+        [HttpGet]
+        [Route(nameof(GetFineByPersonId))]
+        public async Task<ActionResult> GetFineByPersonId([FromQuery] int id)
+        {
+            return Ok(await _fineService.GetFineByPersonId(id));
+        }
+
+        [HttpGet]
+        [Route(nameof(GetFineByAvtoId))]
+        public async Task<ActionResult> GetFineByAvtoId([FromQuery] int id)
+        {
+            return Ok(await _fineService.GetFineByAvtoId(id));
         }
     }
 }

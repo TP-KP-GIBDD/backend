@@ -41,5 +41,9 @@ namespace AvtoAPI.Services
         {
             return await _brandModelRepository.UpdateAsync(brandModel);
         }
+        public async Task<IEnumerable<BrandModel>> GetBrandModelByBrandId(int id)
+        {
+            return await _brandModelRepository.GetBrandModelByBrandId(id);
+        }
     }
 }

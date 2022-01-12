@@ -54,10 +54,18 @@ namespace AvtoAPI.Controllers
 
         [HttpPut]
         [Route(nameof(UpdateCarOwner))]
-        /*[Authorize(Role.Carowner)]*/
+        /*[Authorize(Role.Inspector)]*/
         public async Task UpdateCarOwner([FromQuery] CarOwner carOwner)
         {
             Ok(await _carOwnerService.UpdateCarOwner(carOwner));
+        }
+
+        [HttpGet]
+        [Route(nameof(GetCarOwnerByAvtoId))]
+        /*[Authorize(Role.Carowner)]*/
+        public async Task<IActionResult> GetCarOwnerByAvtoId([FromQuery] int id)
+        {
+            return Ok(await _carOwnerService.GetCarOwnerByAvtoId(id));
         }
     }
 }

@@ -41,5 +41,10 @@ namespace AvtoAPI.Services
         {
             return await _carOwnerRepository.UpdateAsync(carOwner);
         }
+
+        public async Task<IEnumerable<CarOwner>> GetCarOwnerByAvtoId(int id)
+        {
+            return await _carOwnerRepository.GetCarOwnerByAvtoId(id);
+        }
     }
 }

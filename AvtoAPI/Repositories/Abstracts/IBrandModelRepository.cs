@@ -8,5 +8,6 @@ namespace AvtoAPI.Repositories.Abstracts
 {
     public interface IBrandModelRepository : IRepositoryBase<BrandModel>
     {
+        Task<IEnumerable<BrandModel>> GetBrandModelByBrandId(int id);
     }
 }

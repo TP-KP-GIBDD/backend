@@ -32,9 +32,14 @@ namespace AvtoAPI
             services.AddDbContext<AvtoContext>(o => o.UseSqlServer(Configuration.GetConnectionString("avtoDb")));
 
             services.AddControllers();
+
+            services.AddCors(options => options.AddDefaultPolicy(
+                    builder => builder.AllowAnyOrigin()
+                ));
+
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Auto", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Avto", Version = "v1" });
             });
 
             services.AddAvtoRepositoriesDI();
@@ -48,12 +53,18 @@ namespace AvtoAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Auto v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Avto v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 

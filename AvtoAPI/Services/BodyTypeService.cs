@@ -1,5 +1,4 @@
 ﻿using AvtoAPI.Entities;
-using AvtoAPI.Models;
 using AvtoAPI.Repositories;
 using AvtoAPI.Services.Abstracts;
 using System;
