@@ -1,4 +1,5 @@
 ﻿using DTP.Entities;
+using DTP.Repositories.Abstracts;
 using DTP.Services.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace DTP.Services
     public class ProtocolService : IProtocolService
     {
         private readonly IProtocolService _protocolService;
+        private readonly IProtocolRepository _protocolRepository;
 
         public async Task<Protocol> Create(Protocol protocol)
         {
@@ -26,9 +28,19 @@ namespace DTP.Services
             return await _protocolService.GetAll();
         }
 
-        public async Task<Protocol> GetByAddress(string address)
+        public async Task<Protocol> GetProtocolByIdentifier(int identifier)
         {
-            return await _protocolService.GetByAddress(address);
+            return await _protocolRepository.GetProtocolByIdentifier(identifier);
+        }
+
+        public async Task<Protocol> GetProtocolByInspector(string inspector)
+        {
+            return await _protocolRepository.GetProtocolByInspector(inspector);
+        }
+
+        public async Task<Protocol> GetProtocolByTypeViolation(int violation)
+        {
+            return await _protocolRepository.GetProtocolByTypeViolation(violation);
         }
 
         public async Task<Protocol> GetProtocolById(int Id)

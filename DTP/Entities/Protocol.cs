@@ -13,34 +13,37 @@ namespace DTP.Entities
         [Column ("Id")]
         public int Id { get; set; }
 
-        [Column ("address")]
+        [Column ("identifier")] // индификатор ДТП
+        public int identifier { get; set; }
+
+        [Column ("address")] // адрес ДТП 
         public string Address { get; set; }
 
-        [Column ("dateTime")]
+        [Column ("dateTime")] // дата и время ДТП
         public DateTime dateTime { get; set; }
 
-        [Column ("inspector")]
+        [Column ("inspector")] // имя инспектора
         public string Inspector { get; set; }
 
-        [Column ("loginInspector")]
+        [Column ("loginInspector")] // логин
         public string LoginInspector { get; set; }
 
-        [Column ("placeViolationId")]
+        [Column ("placeViolationId")] // место ДТП
         [ForeignKey(nameof(PlaceViolation))]
         public int PlaceViolationId { get; set; }
         public virtual PlaceViolation Place { get; set; }
 
-        [Column ("typeViolationId")]
+        [Column ("typeViolationId")] // тип нарушения
         [ForeignKey(nameof(TypeViolation))]
         public int TypeViolationId { get; set; }
         public virtual TypeViolation TypeViolation { get; set; }
 
-        [Column ("participantsId")]
+        [Column ("participantsId")] // участники
         [ForeignKey(nameof(Participants))]
         public int ParticipantsId { get; set; }
         public virtual Participants Participants { get; set; }
 
-        [Column ("violation")]
+        [Column ("violation")] // описание нарушения
         public string Violation { get; set; }
     }
 }

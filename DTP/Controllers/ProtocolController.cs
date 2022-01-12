@@ -26,10 +26,24 @@ namespace DTP.Controllers
         }
 
         [HttpGet]
-        [Route("/GetByAddress/{id:int}")]
-        public async Task<IActionResult> GetByAddress([FromQuery] string adress)
+        [Route("/GetProtocolByIdentifier/{id:int}")]
+        public async Task<IActionResult> GetProtocolByIdentifier([FromQuery] int identifier)
         {
-            return Ok(await _protocolService.GetByAddress(adress));
+            return Ok(await _protocolService.GetProtocolByIdentifier(identifier));
+        }
+
+        [HttpGet]
+        [Route("/GetProtocolByInspector/{id:int}")]
+        public async Task<IActionResult> GetProtocolByInspector([FromQuery] string inspector)
+        {
+            return Ok(await _protocolService.GetProtocolByInspector(inspector));
+        }
+
+        [HttpGet]
+        [Route("/GetProtocolByTypeViolation/{id:int}")]
+        public async Task<IActionResult> GetProtocolByTypeViolation(int violation)
+        {
+            return Ok(await _protocolService.GetProtocolByTypeViolation(violation));
         }
 
         [HttpGet]

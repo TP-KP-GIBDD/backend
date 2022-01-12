@@ -34,10 +34,12 @@
       "AvtoAPI/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.12",
+          "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
           "Swashbuckle.AspNetCore": "5.6.3",
+          "WebApiRouteDebugger": "1.0.0",
           "Microsoft.AspNetCore.Antiforgery": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "5.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "5.0.0.0",
@@ -1861,6 +1863,7 @@
           "System.Xml.XmlDocument": "4.3.0"
         }
       },
+      "WebApiRouteDebugger/1.0.0": {},
       "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
         "compile": {
           "Microsoft.AspNetCore.Antiforgery.dll": {}
@@ -4464,6 +4467,13 @@
       "sha512": "sha512-MYoTCP7EZ98RrANESW05J5ZwskKDoN0AuZ06ZflnowE50LTpbR5yRg3tHckTVm5j/m47stuGgCrCHWePyHS70Q==",
       "path": "system.xml.xmlserializer/4.3.0",
       "hashPath": "system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    },
+    "WebApiRouteDebugger/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-e6e7FlAiCr90txa2uHkBKWU6a4NNnssMQ8/e1uNqQVjrxcgaWf/FoSXGOBHVMfEh6BNXpVUznjV3YFtGWEB//Q==",
+      "path": "webapiroutedebugger/1.0.0",
+      "hashPath": "webapiroutedebugger.1.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Antiforgery/5.0.0.0": {
       "type": "referenceassembly",
