@@ -13,6 +13,20 @@ namespace FineAPI.Repositories
         public FineRepository(FineContext context) : base(context)
         {}
 
+        public override async Task<IEnumerable<Fine>> GetAll()
+        {
+            return await _context.Fines
+                .Include(f => f.TypeFine)
+                .ToListAsync();
+        }
+
+        public override async Task<Fine> GetAsync(int id)
+        {
+            return await _context.Fines.Where(f => f.Id == id)
+                .Include(f => f.TypeFine)
+                .FirstAsync();
+        }
+
         public async Task<IEnumerable<Fine>> GetFineByPersonId(int id)
         {
             return await _context.Set<Fine>().Where(c => c.PersonId == id).ToListAsync();

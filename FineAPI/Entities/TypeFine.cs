@@ -16,5 +16,8 @@ namespace FineAPI.Entities
 
         [Column("name")]
         public string Name { get; set; }
+
+        [Column("article")]
+        public string Article { get; set; }
     }
 }

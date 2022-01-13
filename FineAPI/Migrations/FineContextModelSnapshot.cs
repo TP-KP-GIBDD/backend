@@ -51,6 +51,35 @@ namespace FineAPI.Migrations
                     b.HasIndex("TypeFineId");
 
                     b.ToTable("fine");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AvtoId = 1,
+                            PersonId = 6,
+                            StatusFine = "Не оплачен",
+                            SumaryFine = 30000,
+                            TypeFineId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AvtoId = 2,
+                            PersonId = 7,
+                            StatusFine = "Не оплачен",
+                            SumaryFine = 500,
+                            TypeFineId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AvtoId = 1,
+                            PersonId = 7,
+                            StatusFine = "Не оплачен",
+                            SumaryFine = 1500,
+                            TypeFineId = 3
+                        });
                 });
 
             modelBuilder.Entity("FineAPI.Entities.TypeFine", b =>
@@ -61,6 +90,10 @@ namespace FineAPI.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Article")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("article");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("name");
@@ -68,6 +101,26 @@ namespace FineAPI.Migrations
                     b.HasKey("id");
 
                     b.ToTable("type_fine");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            Article = "264.1",
+                            Name = "Вождение в нетрезвом виде"
+                        },
+                        new
+                        {
+                            id = 2,
+                            Article = "12.9",
+                            Name = "Превышение скорости"
+                        },
+                        new
+                        {
+                            id = 3,
+                            Article = "124.2",
+                            Name = "Парковка в неположеном месте"
+                        });
                 });
 
             modelBuilder.Entity("FineAPI.Entities.Fine", b =>

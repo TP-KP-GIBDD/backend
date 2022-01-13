@@ -21,5 +21,8 @@ namespace AvtoAPI.Entities
         [ForeignKey(nameof(Avto))]       
         public int AvtoId { get; set; }
         public virtual Avto Avto { get; set; }
+
+        [Column("registration_date")]
+        public DateTime RegistrationDate { get; set; }
     }
 }

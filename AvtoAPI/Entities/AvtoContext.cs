@@ -37,9 +37,13 @@ namespace AvtoAPI.Entities
             builder.Entity<BrandModel>().HasData(
                 new BrandModel[]
                 {
-                    new BrandModel{ Id=1,Name = "c63", BrandId = 1},
-                    new BrandModel{ Id=2,Name = "m5", BrandId = 2},
-                    new BrandModel{ Id=3,Name="k5", BrandId = 3}
+                    new BrandModel{ Id=1,Name = "C63", BrandId = 1},
+                    new BrandModel{ Id=2,Name = "M5", BrandId = 2},
+                    new BrandModel{ Id=3,Name="K5", BrandId = 3},
+                    new BrandModel{ Id=4,Name = "G63", BrandId = 1},
+                    new BrandModel{ Id=5,Name = "X3", BrandId = 2},
+                    new BrandModel{ Id=6,Name = "X5", BrandId = 2},
+                    new BrandModel{ Id=7,Name = "Optima", BrandId = 3},
                 });
             builder.Entity<ColorAvto>().HasData(
                 new ColorAvto[]
@@ -64,9 +68,12 @@ namespace AvtoAPI.Entities
             builder.Entity<CarOwner>().HasData(
                 new CarOwner[]
                 {
-                    new CarOwner{ Id=1,PersonId = 1, AvtoId = 1},
-                    new CarOwner{ Id=2,PersonId = 2, AvtoId = 2},
-                    new CarOwner{ Id=3,PersonId = 3, AvtoId = 3}
+                    new CarOwner{ Id=1,PersonId = 1, AvtoId = 1, RegistrationDate = new DateTime(1999, 10, 10)},
+                    new CarOwner{ Id=2,PersonId = 2, AvtoId = 1, RegistrationDate = new DateTime(2004, 5, 21)},
+                    new CarOwner{ Id=3,PersonId = 3, AvtoId = 1, RegistrationDate = new DateTime(2005, 6, 22)},
+                    new CarOwner{ Id=4,PersonId = 1, AvtoId = 1, RegistrationDate = new DateTime(2014, 11, 6)},
+                    new CarOwner{ Id=5,PersonId = 2, AvtoId = 2, RegistrationDate = new DateTime(2008, 9, 6)},
+                    new CarOwner{ Id=6,PersonId = 4, AvtoId = 3, RegistrationDate = new DateTime(2002, 4, 16)}
                 });
             builder.Entity<Avto>().HasData(
             new Avto[]

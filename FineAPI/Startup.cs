@@ -33,6 +33,11 @@ namespace FineAPI
             services.Configure<EmailOptions>(Configuration.GetSection("EmailSettings"));
             services.AddDbContext<FineContext>(o => o.UseSqlServer(Configuration.GetConnectionString("fineDb")));
             services.AddControllers();
+
+            services.AddCors(options => options.AddDefaultPolicy(
+                    builder => builder.AllowAnyOrigin()
+                ));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FineAPI", Version = "v1" });
@@ -54,6 +59,12 @@ namespace FineAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(builder => {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+            });
 
             app.UseAuthorization();
 
